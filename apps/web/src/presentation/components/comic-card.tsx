@@ -1,12 +1,12 @@
+import { memo } from "react";
 import Image from "next/image";
-
-import { Comic } from "@koma/core";
+import { ComicViewModel } from "../view-models/comic-view-model";
 
 interface ComicCardProps {
-  comic: Comic;
+  comic: ComicViewModel;
 }
 
-export function ComicCard({ comic }: ComicCardProps) {
+export const ComicCard = memo(function ComicCard({ comic }: ComicCardProps) {
   return (
     <article className="group relative flex flex-col gap-3">
       <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-gray-200 shadow-md transition group-hover:shadow-xl">
@@ -25,16 +25,16 @@ export function ComicCard({ comic }: ComicCardProps) {
         )}
       </div>
       <div className="space-y-1">
-        <h3 className="leading-snug font-semibold text-gray-900">
+        <h3 className="font-semibold leading-snug text-gray-900">
           {comic.title}
         </h3>
         <p className="truncate text-sm text-gray-500">
           {comic.authors.join(", ")}
         </p>
-        <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
+        <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
           {comic.status}
         </span>
       </div>
     </article>
   );
-}
+});

@@ -1,10 +1,10 @@
-import { Comic } from "@koma/core";
+import { ComicViewModel } from "../view-models/comic-view-model";
 
-import { ComicCard } from "../components/comic-card";
+import { ComicGrid } from "../components/comic-grid";
 import { SearchComicForm } from "../components/search-comic-form";
 
 interface HomeViewProps {
-  comics: Comic[];
+  comics: ComicViewModel[];
 }
 
 export function HomeView({ comics }: HomeViewProps) {
@@ -31,17 +31,7 @@ export function HomeView({ comics }: HomeViewProps) {
           <h2 className="mb-6 text-2xl font-bold">
             Your Collection ({comics.length})
           </h2>
-
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
-            {comics.map((comic) => (
-              <ComicCard key={comic.id} comic={comic} />
-            ))}
-            {comics.length === 0 && (
-              <div className="col-span-full py-12 text-center text-gray-500">
-                You have no comics yet. Start searching!
-              </div>
-            )}
-          </div>
+          <ComicGrid comics={comics} />
         </section>
       </main>
     </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { comicRepo } from "@/lib/di";
+import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 import { HomeView } from "@/presentation/views/home-view";
 
 export const metadata: Metadata = {
@@ -11,5 +12,15 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const comics = await comicRepo.listAll();
 
-  return <HomeView comics={comics} />;
+  const comicViewModels: ComicViewModel[] = comics.map((c) => ({
+    id: c.id,
+    isbn: c.isbn,
+    title: c.title,
+    publisher: c.publisher,
+    authors: c.authors,
+    status: c.status,
+    coverUrl: c.coverUrl,
+  }));
+
+  return <HomeView comics={comicViewModels} />;
 }
