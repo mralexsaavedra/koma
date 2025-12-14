@@ -39,7 +39,7 @@ export function SearchComicForm() {
               key={comic.isbn}
               className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-md"
             >
-              <div className="aspect-[2/3] w-20 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
+              <div className="aspect-2/3 w-20 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
                 {comic.coverUrl ? (
                   <img
                     src={comic.coverUrl}

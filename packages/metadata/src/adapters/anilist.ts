@@ -4,6 +4,22 @@ export interface IEnrichmentSource {
   searchByTitle(title: string): Promise<Partial<ComicMetadata> | null>;
 }
 
+interface AniListResponse {
+  data?: {
+    Media?: {
+      title: {
+        romaji: string;
+        english?: string;
+        native?: string;
+      };
+      coverImage: {
+        extraLarge: string;
+      };
+      description?: string;
+    };
+  };
+}
+
 export class AniListAdapter implements IEnrichmentSource {
   async searchByTitle(title: string): Promise<Partial<ComicMetadata> | null> {
     const cleanTitle = title.replace(/\d+$/, "").trim();
@@ -31,7 +47,7 @@ export class AniListAdapter implements IEnrichmentSource {
 
     try {
       const res = await fetch(url, options);
-      const data = await res.json();
+      const data = (await res.json()) as AniListResponse;
       const media = data.data?.Media;
 
       if (!media) return null;

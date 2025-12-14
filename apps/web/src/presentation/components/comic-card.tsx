@@ -7,7 +7,7 @@ interface ComicCardProps {
 export function ComicCard({ comic }: ComicCardProps) {
   return (
     <article className="group relative flex flex-col gap-3">
-      <div className="aspect-[2/3] w-full overflow-hidden rounded-xl bg-gray-200 shadow-md transition group-hover:shadow-xl">
+      <div className="aspect-2/3 w-full overflow-hidden rounded-xl bg-gray-200 shadow-md transition group-hover:shadow-xl">
         {comic.coverUrl ? (
           <img
             src={comic.coverUrl}

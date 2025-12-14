@@ -5,12 +5,35 @@ export interface IMetadataSource {
   search(query: string): Promise<ComicMetadata[]>;
 }
 
+interface GoogleBooksResponse {
+  items?: GoogleBooksItem[];
+}
+
+interface GoogleBooksItem {
+  volumeInfo: {
+    title: string;
+    publisher?: string;
+    authors?: string[];
+    description?: string;
+    pageCount?: number;
+    publishedDate?: string;
+    imageLinks?: {
+      thumbnail?: string;
+      smallThumbnail?: string;
+    };
+    industryIdentifiers?: Array<{
+      type: string;
+      identifier: string;
+    }>;
+  };
+}
+
 export class GoogleBooksAdapter implements IMetadataSource {
   async getByIsbn(isbn: string): Promise<ComicMetadata | null> {
     const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
     try {
       const res = await fetch(url);
-      const data = await res.json();
+      const data = (await res.json()) as GoogleBooksResponse;
       if (!data.items || !data.items.length) return null;
 
       return this.mapToMetadata(data.items[0], isbn);
@@ -23,17 +46,17 @@ export class GoogleBooksAdapter implements IMetadataSource {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=20`;
     try {
       const res = await fetch(url);
-      const data = await res.json();
+      const data = (await res.json()) as GoogleBooksResponse;
       if (!data.items || !data.items.length) return [];
 
       return data.items
-        .map((item: any) => {
+        .map((item) => {
           const identifiers = item.volumeInfo.industryIdentifiers || [];
           const isbn13 = identifiers.find(
-            (id: any) => id.type === "ISBN_13",
+            (id) => id.type === "ISBN_13",
           )?.identifier;
           const isbn10 = identifiers.find(
-            (id: any) => id.type === "ISBN_10",
+            (id) => id.type === "ISBN_10",
           )?.identifier;
           const isbn = isbn13 || isbn10;
 
@@ -41,15 +64,13 @@ export class GoogleBooksAdapter implements IMetadataSource {
 
           return this.mapToMetadata(item, isbn);
         })
-        .filter(
-          (item: ComicMetadata | null) => item !== null,
-        ) as ComicMetadata[];
+        .filter((item): item is ComicMetadata => item !== null);
     } catch {
       return [];
     }
   }
 
-  private mapToMetadata(item: any, isbn: string): ComicMetadata {
+  private mapToMetadata(item: GoogleBooksItem, isbn: string): ComicMetadata {
     const info = item.volumeInfo;
     return {
       isbn: isbn,
