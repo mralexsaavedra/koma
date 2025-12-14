@@ -1,6 +1,5 @@
 export type ComicId = string;
 
-// Value Object para el estado (ejemplo DDD)
 export enum CollectionStatus {
   WANTED = "WANTED",
   OWNED = "OWNED",
@@ -19,7 +18,6 @@ export class Comic {
     public acquiredAt?: Date,
   ) {}
 
-  // Lógica de dominio aquí (no solo datos)
   markAsRead() {
     this.status = CollectionStatus.READ;
   }
