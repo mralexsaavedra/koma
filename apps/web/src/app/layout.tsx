@@ -3,6 +3,7 @@ import { Bangers, Geist_Mono, M_PLUS_Rounded_1c } from "next/font/google";
 
 import { ToastProvider } from "../presentation/providers/toast-provider";
 import "./globals.css";
+import { ReactNode } from "react";
 
 const bangers = Bangers({
   weight: "400",
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 const RootLayout = ({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) => {
   return (
     <html lang="en">

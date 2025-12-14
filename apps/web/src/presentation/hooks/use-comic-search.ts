@@ -1,4 +1,4 @@
-import { useCallback, useState, useTransition } from "react";
+import { FormEvent, useCallback, useState, useTransition } from "react";
 
 import { ComicMetadata } from "@koma/core";
 
@@ -14,7 +14,7 @@ export const useComicSearch = () => {
   const { showToast } = useToast();
 
   const handleSearch = useCallback(
-    (e: React.FormEvent) => {
+    (e: FormEvent) => {
       e.preventDefault();
       if (!query.trim()) return;
 

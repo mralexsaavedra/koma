@@ -1,10 +1,12 @@
 "use client";
 
+import { FormEvent } from "react";
+
 interface SearchInputProps {
   query: string;
   setQuery: (query: string) => void;
   isSearching: boolean;
-  onSearch: (e: React.FormEvent) => void;
+  onSearch: (e: FormEvent) => void;
 }
 
 export const SearchInput = ({
