@@ -1,0 +1,25 @@
+# Node
+node_modules
+dist
+build
+.pnpm-debug.log
+npm-debug.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Project specific
+classes
+coverage

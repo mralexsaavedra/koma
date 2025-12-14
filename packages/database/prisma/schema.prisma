@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Comic {
+  id            String    @id // Generamos el UUID en el dominio, no en la DB
+  isbn          String    @unique
+  title         String
+  publisher     String?
+  
+  // SQLite no soporta String[], así que lo guardamos como String (JSON stringified)
+  authors       String    @default("[]") 
+  
+  status        String    @default("WANTED")
+  coverUrl      String?
+  acquiredAt    DateTime?
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}

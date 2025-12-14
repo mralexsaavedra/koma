@@ -1,0 +1,21 @@
+{
+  "name": "@koma/cli",
+  "version": "0.0.0",
+  "description": "CLI Integration for Koma",
+  "main": "src/main.ts",
+  "dependencies": {
+    "@koma/core": "workspace:*",
+    "@koma/database": "workspace:*",
+    "@koma/metadata": "workspace:*"
+  },
+  "devDependencies": {
+    "@koma/tsconfig": "workspace:*",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "build": "tsc"
+  }
+}
