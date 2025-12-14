@@ -1,11 +1,6 @@
-import { CollectionStatus } from "@koma/core";
+import { Comic } from "@koma/core";
 
-export interface ComicViewModel {
-  id: string;
-  isbn: string;
-  title: string;
-  publisher: string;
-  authors: string[];
-  status: CollectionStatus;
-  coverUrl?: string;
-}
+export type ComicViewModel = Pick<
+  Comic,
+  "id" | "isbn" | "title" | "publisher" | "authors" | "status" | "coverUrl"
+>;
