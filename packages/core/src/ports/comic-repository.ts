@@ -1,4 +1,4 @@
-import { Comic } from "../domain/comic.js";
+import { Comic } from "../domain/comic";
 
 export interface IComicRepository {
   save(comic: Comic): Promise<void>;

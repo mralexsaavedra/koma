@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto";
 
-import { CollectionStatus, Comic } from "../domain/comic.js";
-import { IComicRepository } from "../ports/comic-repository.js";
-import { IMetadataProvider } from "../ports/metadata-provider.js";
+import { CollectionStatus, Comic } from "../domain/comic";
+import { IComicRepository } from "../ports/comic-repository";
+import { IMetadataProvider } from "../ports/metadata-provider";
 
 export interface AddComicInput {
   isbn: string;

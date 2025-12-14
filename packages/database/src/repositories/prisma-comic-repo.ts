@@ -1,14 +1,12 @@
 import { Comic, IComicRepository } from "@koma/core";
 
-import { prisma } from "../client.js";
-// Tu instancia de Prisma Client
-import { ComicMapper } from "../mappers/comic-mapper.js";
+import { prisma } from "../client";
+import { ComicMapper } from "../mappers/comic-mapper";
 
 export class PrismaComicRepository implements IComicRepository {
   async save(comic: Comic): Promise<void> {
     const data = ComicMapper.toPersistence(comic);
 
-    // Upsert: Si existe actualiza, si no crea
     await prisma.comic.upsert({
       where: { isbn: comic.isbn },
       update: data,

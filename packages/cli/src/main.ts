@@ -9,18 +9,14 @@ import {
 async function main() {
   process.stdout.write("🚀 Starting Koma Integration Test...\n");
 
-  // 1. Setup Infrastructure
   const comicRepo = new PrismaComicRepository();
   const metadataProvider = new MetadataService(
     [new GoogleBooksAdapter()],
     new AniListAdapter(),
   );
 
-  // 2. Setup Application Layer
   const addComicUseCase = new AddComicUseCase(comicRepo, metadataProvider);
 
-  // 3. Execute Use Case
-  // ISBN for "Yona of the Dawn, Vol. 28"
   const TEST_ISBN = "9788467942606";
 
   process.stdout.write(`\n📚 Adding comic with ISBN: ${TEST_ISBN}\n`);

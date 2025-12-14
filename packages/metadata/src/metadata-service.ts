@@ -1,7 +1,7 @@
 import type { ComicMetadata, IMetadataProvider } from "@koma/core";
 
-import type { IEnrichmentSource } from "./adapters/anilist.js";
-import type { IMetadataSource } from "./adapters/google-books.js";
+import type { IEnrichmentSource } from "./adapters/anilist";
+import type { IMetadataSource } from "./adapters/google-books";
 
 export class MetadataService implements IMetadataProvider {
   constructor(
@@ -12,7 +12,6 @@ export class MetadataService implements IMetadataProvider {
   async getByIsbn(isbn: string): Promise<ComicMetadata | null> {
     let result: ComicMetadata | null = null;
 
-    // 1. Identification
     for (const source of this.sources) {
       result = await source.getByIsbn(isbn);
       if (result) {
@@ -24,7 +23,6 @@ export class MetadataService implements IMetadataProvider {
       return null;
     }
 
-    // 2. Enrichment (if missing cover or title seems "bad")
     if (!result.coverUrl || !result.synopsis) {
       const extraData = await this.enricher.searchByTitle(result.title);
 
@@ -42,7 +40,6 @@ export class MetadataService implements IMetadataProvider {
   }
 
   async search(_query: string): Promise<ComicMetadata[]> {
-    // Not implemented for now, required by interface
     return [];
   }
 }
