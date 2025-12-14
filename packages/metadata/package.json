@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "@koma/tsconfig": "workspace:*",
-    "@types/node": "^25.0.1",
-    "tsx": "^4.21.0"
+    "@types/node": "^25.0.1"
   }
 }
