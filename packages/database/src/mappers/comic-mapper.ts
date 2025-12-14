@@ -1,5 +1,5 @@
-import { Comic, CollectionStatus } from '@koma/core'; // Importamos del core
-import { Comic as PrismaComic } from '@prisma/client'; // Importamos de Prisma generado
+import { Comic, CollectionStatus } from '@koma/core';
+import { Comic as PrismaComic } from '@prisma/client';
 
 export class ComicMapper {
   static toDomain(raw: PrismaComic): Comic {
@@ -8,23 +8,25 @@ export class ComicMapper {
       raw.isbn,
       raw.title,
       raw.publisher || 'Unknown',
-      raw.authors ? JSON.parse(raw.authors) : [], // SQLite no tiene arrays nativos, usaremos JSON
+      raw.authors ? JSON.parse(raw.authors) : [],
       raw.status as CollectionStatus,
       raw.coverUrl || undefined,
-      raw.acquiredAt || undefined
+      raw.acquiredAt || undefined,
     );
   }
 
-  static toPersistence(comic: Comic): any {
+  static toPersistence(comic: Comic): PrismaComic {
     return {
       id: comic.id,
       isbn: comic.isbn,
       title: comic.title,
       publisher: comic.publisher,
-      authors: JSON.stringify(comic.authors), // Serializamos array a string para SQLite
+      authors: JSON.stringify(comic.authors),
       status: comic.status,
-      coverUrl: comic.coverUrl,
-      acquiredAt: comic.acquiredAt
+      coverUrl: comic.coverUrl ?? null,
+      acquiredAt: comic.acquiredAt ?? null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
   }
 }
