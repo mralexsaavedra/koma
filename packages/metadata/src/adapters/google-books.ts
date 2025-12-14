@@ -28,7 +28,6 @@ export class GoogleBooksAdapter implements IMetadataSource {
 
       return data.items
         .map((item: any) => {
-          // Intentar encontrar ISBN-13, luego ISBN-10
           const identifiers = item.volumeInfo.industryIdentifiers || [];
           const isbn13 = identifiers.find(
             (id: any) => id.type === "ISBN_13",
@@ -38,7 +37,7 @@ export class GoogleBooksAdapter implements IMetadataSource {
           )?.identifier;
           const isbn = isbn13 || isbn10;
 
-          if (!isbn) return null; // Sin ISBN no nos sirve por ahora
+          if (!isbn) return null;
 
           return this.mapToMetadata(item, isbn);
         })

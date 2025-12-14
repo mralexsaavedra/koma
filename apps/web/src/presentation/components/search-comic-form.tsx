@@ -1,36 +1,17 @@
 "use client";
 
-import { useState, useTransition } from "react";
-
-import { ComicMetadata } from "@koma/core";
-
-import { addComicAction, searchComicsAction } from "@/actions/comic-actions";
+import { useComicSearch } from "../hooks/use-comic-search";
 
 export function SearchComicForm() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<ComicMetadata[]>([]);
-  const [isSearching, startTransition] = useTransition();
-  const [isAdding, startAddTransition] = useTransition();
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim()) return;
-
-    startTransition(async () => {
-      const comics = await searchComicsAction(query);
-      setResults(comics);
-    });
-  };
-
-  const handleAdd = (isbn: string) => {
-    startAddTransition(async () => {
-      const formData = new FormData();
-      formData.append("isbn", isbn);
-      await addComicAction(formData);
-      // Opcional: Limpiar resultados o mostrar feedback
-      alert("Comic added!");
-    });
-  };
+  const {
+    query,
+    setQuery,
+    results,
+    isSearching,
+    isAdding,
+    handleSearch,
+    handleAdd,
+  } = useComicSearch();
 
   return (
     <div className="mx-auto w-full max-w-2xl space-y-8">
