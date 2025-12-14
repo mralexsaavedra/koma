@@ -2,7 +2,12 @@
   "name": "@koma/cli",
   "version": "0.0.0",
   "description": "CLI tools for testing and managing Koma",
+  "type": "module",
   "main": "src/main.ts",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "build": "tsc"
+  },
   "dependencies": {
     "@koma/core": "workspace:*",
     "@koma/database": "workspace:*",
@@ -12,10 +17,5 @@
     "@koma/tsconfig": "workspace:*",
     "@types/node": "^20.0.0",
     "tsx": "^4.7.0"
-  },
-  "type": "module",
-  "scripts": {
-    "start": "tsx src/main.ts",
-    "build": "tsc"
   }
 }

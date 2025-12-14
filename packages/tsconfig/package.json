@@ -1,6 +1,6 @@
 {
-  "description": "Shared TypeScript configuration for Koma monorepo",
   "version": "0.0.0",
+  "description": "Shared TypeScript configuration for Koma monorepo",
   "private": true,
   "files": [
     "base.json"

@@ -5,17 +5,16 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@koma/core": "workspace:*",
+    "@prisma/client": "5.22.0"
   },
   "devDependencies": {
     "@koma/tsconfig": "workspace:*",
     "@types/node": "^25.0.1",
     "prisma": "5.22.0",
     "tsx": "^4.21.0"
-  },
-  "dependencies": {
-    "@koma/core": "workspace:*",
-    "@prisma/client": "5.22.0"
   }
 }
