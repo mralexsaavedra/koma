@@ -11,7 +11,7 @@ const bangers = Bangers({
 });
 
 const mplus = M_PLUS_Rounded_1c({
-  weight: ["100", "300", "400", "500", "700", "800", "900"],
+  weight: ["400", "500", "700", "800"],
   subsets: ["latin"],
   variable: "--font-mplus",
 });
