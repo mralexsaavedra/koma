@@ -1,5 +1,5 @@
-import { Comic, CollectionStatus } from '@koma/core';
-import { Comic as PrismaComic } from '@prisma/client';
+import { Comic, CollectionStatus } from "@koma/core";
+import { Comic as PrismaComic } from "@prisma/client";
 
 export class ComicMapper {
   static toDomain(raw: PrismaComic): Comic {
@@ -7,7 +7,7 @@ export class ComicMapper {
       raw.id,
       raw.isbn,
       raw.title,
-      raw.publisher || 'Unknown',
+      raw.publisher || "Unknown",
       raw.authors ? JSON.parse(raw.authors) : [],
       raw.status as CollectionStatus,
       raw.coverUrl || undefined,

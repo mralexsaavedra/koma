@@ -1,4 +1,4 @@
-import { ComicMetadata } from '@koma/core';
+import { ComicMetadata } from "@koma/core";
 
 export interface IEnrichmentSource {
   searchByTitle(title: string): Promise<Partial<ComicMetadata> | null>;
@@ -6,8 +6,8 @@ export interface IEnrichmentSource {
 
 export class AniListAdapter implements IEnrichmentSource {
   async searchByTitle(title: string): Promise<Partial<ComicMetadata> | null> {
-    const cleanTitle = title.replace(/\d+$/, '').trim(); 
-    
+    const cleanTitle = title.replace(/\d+$/, "").trim();
+
     const query = `
       query ($search: String) {
         Media (search: $search, type: MANGA) {
@@ -19,11 +19,14 @@ export class AniListAdapter implements IEnrichmentSource {
       }
     `;
 
-    const url = 'https://graphql.anilist.co';
+    const url = "https://graphql.anilist.co";
     const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ query, variables: { search: cleanTitle } })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ query, variables: { search: cleanTitle } }),
     };
 
     try {
@@ -34,12 +37,11 @@ export class AniListAdapter implements IEnrichmentSource {
       if (!media) return null;
 
       return {
-        title: media.title.english || media.title.romaji, 
+        title: media.title.english || media.title.romaji,
         coverUrl: media.coverImage.extraLarge,
         synopsis: media.description,
       };
-    } catch (err) {
-      console.error('AniList Error:', err);
+    } catch {
       return null;
     }
   }

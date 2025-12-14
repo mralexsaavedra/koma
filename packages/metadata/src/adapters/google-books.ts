@@ -1,4 +1,4 @@
-import type { ComicMetadata } from '@koma/core';
+import type { ComicMetadata } from "@koma/core";
 
 export interface IMetadataSource {
   getByIsbn(isbn: string): Promise<ComicMetadata | null>;
@@ -11,21 +11,25 @@ export class GoogleBooksAdapter implements IMetadataSource {
       const res = await fetch(url);
       const data = await res.json();
       if (!data.items || !data.items.length) return null;
-      
+
       const info = data.items[0].volumeInfo;
       return {
         isbn: isbn,
         title: info.title,
-        publisher: info.publisher || '',
+        publisher: info.publisher || "",
         authors: info.authors || [],
-        coverUrl: info.imageLinks?.thumbnail || info.imageLinks?.smallThumbnail || undefined,
+        coverUrl:
+          info.imageLinks?.thumbnail ||
+          info.imageLinks?.smallThumbnail ||
+          undefined,
         synopsis: info.description,
         pageCount: info.pageCount,
-        ...(info.publishedDate ? { publishedDate: new Date(info.publishedDate) } : {})
+        ...(info.publishedDate
+          ? { publishedDate: new Date(info.publishedDate) }
+          : {}),
       };
-    } catch (err) {
-      console.error('GoogleBooks Error:', err);
-      return null; 
+    } catch {
+      return null;
     }
   }
 }

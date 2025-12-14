@@ -1,7 +1,7 @@
-import { randomUUID } from 'crypto';
-import { Comic, CollectionStatus } from '../domain/comic.js';
-import { IComicRepository } from '../ports/comic-repository.js';
-import { IMetadataProvider } from '../ports/metadata-provider.js';
+import { randomUUID } from "crypto";
+import { Comic, CollectionStatus } from "../domain/comic.js";
+import { IComicRepository } from "../ports/comic-repository.js";
+import { IMetadataProvider } from "../ports/metadata-provider.js";
 
 export interface AddComicInput {
   isbn: string;
@@ -11,7 +11,7 @@ export interface AddComicInput {
 export class AddComicUseCase {
   constructor(
     private readonly comicRepo: IComicRepository,
-    private readonly metadataProvider: IMetadataProvider
+    private readonly metadataProvider: IMetadataProvider,
   ) {}
 
   async execute(input: AddComicInput): Promise<Comic> {
@@ -36,7 +36,7 @@ export class AddComicUseCase {
       metadata.authors,
       input.collectionStatus || CollectionStatus.WANTED,
       metadata.coverUrl,
-      new Date()
+      new Date(),
     );
 
     // 4. Persist
