@@ -1,7 +1,7 @@
 import { Comic } from "@koma/core";
 
-import { AddComicForm } from "../components/add-comic-form";
 import { ComicCard } from "../components/comic-card";
+import { SearchComicForm } from "../components/search-comic-form";
 
 interface HomeViewProps {
   comics: Comic[];
@@ -9,8 +9,8 @@ interface HomeViewProps {
 
 export function HomeView({ comics }: HomeViewProps) {
   return (
-    <div className="min-h-screen bg-gray-50 p-8 font-sans text-gray-900">
-      <main className="mx-auto max-w-4xl space-y-12">
+    <div className="min-h-screen bg-gray-50 py-12">
+      <main className="mx-auto max-w-4xl space-y-12 px-4">
         {/* Header */}
         <header className="space-y-4 text-center">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
@@ -21,8 +21,10 @@ export function HomeView({ comics }: HomeViewProps) {
           </p>
         </header>
 
-        {/* Action Section */}
-        <AddComicForm />
+        {/* Action Section - Search */}
+        <section>
+          <SearchComicForm />
+        </section>
 
         {/* List Section */}
         <section>
@@ -34,13 +36,12 @@ export function HomeView({ comics }: HomeViewProps) {
             {comics.map((comic) => (
               <ComicCard key={comic.id} comic={comic} />
             ))}
+            {comics.length === 0 && (
+              <div className="col-span-full py-12 text-center text-gray-500">
+                You have no comics yet. Start searching!
+              </div>
+            )}
           </div>
-
-          {comics.length === 0 && (
-            <div className="py-20 text-center text-gray-400">
-              No comics found. Add one above to start!
-            </div>
-          )}
         </section>
       </main>
     </div>

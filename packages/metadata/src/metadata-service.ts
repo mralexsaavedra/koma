@@ -39,7 +39,14 @@ export class MetadataService implements IMetadataProvider {
     return result;
   }
 
-  async search(_query: string): Promise<ComicMetadata[]> {
-    return [];
+  async search(query: string): Promise<ComicMetadata[]> {
+    const allResults: ComicMetadata[] = [];
+
+    // Lanzar búsquedas en paralelo a todas las fuentes
+    const promises = this.sources.map((s) => s.search(query));
+    const results = await Promise.all(promises);
+
+    results.forEach((r) => allResults.push(...r));
+    return allResults;
   }
 }

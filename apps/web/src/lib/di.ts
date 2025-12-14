@@ -1,4 +1,4 @@
-import { AddComicUseCase } from "@koma/core";
+import { AddComicUseCase, SearchComicsExternalUseCase } from "@koma/core";
 import { PrismaComicRepository } from "@koma/database";
 import {
   AniListAdapter,
@@ -15,6 +15,10 @@ const metadataService = new MetadataService(
 
 export const addComicUseCase = new AddComicUseCase(
   comicRepository,
+  metadataService,
+);
+
+export const searchComicsExternalUseCase = new SearchComicsExternalUseCase(
   metadataService,
 );
 
