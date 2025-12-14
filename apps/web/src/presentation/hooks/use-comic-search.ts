@@ -1,6 +1,5 @@
-import { FormEvent, useCallback, useState, useTransition } from "react";
-
-import { ComicMetadata } from "@koma/core";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { FormEvent, useState } from "react";
 
 import { addComicAction, searchComicsAction } from "@/actions/comic-actions";
 
@@ -8,39 +7,35 @@ import { useToast } from "../providers/toast-provider";
 
 export const useComicSearch = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<ComicMetadata[]>([]);
-  const [isSearching, startTransition] = useTransition();
-  const [isAdding, startAddTransition] = useTransition();
+  const [executedQuery, setExecutedQuery] = useState("");
   const { showToast } = useToast();
 
-  const handleSearch = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-      if (!query.trim()) return;
+  const { data: results = [], isFetching: isSearching } = useQuery({
+    queryKey: ["search-comics", executedQuery],
+    queryFn: () => searchComicsAction(executedQuery),
+    enabled: !!executedQuery,
+    staleTime: Infinity,
+  });
 
-      startTransition(async () => {
-        const comics = await searchComicsAction(query);
-        setResults(comics);
-      });
-    },
-    [query],
-  );
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    setExecutedQuery(query.trim());
+  };
 
-  const handleAdd = useCallback(
-    (isbn: string) => {
-      startAddTransition(async () => {
-        try {
-          const formData = new FormData();
-          formData.append("isbn", isbn);
-          await addComicAction(formData);
-          showToast("Comic added to collection!", "success");
-        } catch {
-          showToast("Failed to add comic. Try again.", "error");
-        }
-      });
+  const { mutate: addComic, isPending: isAdding } = useMutation({
+    mutationFn: addComicAction,
+    onSuccess: () => {
+      showToast("Comic added to your collection!", "success");
     },
-    [showToast],
-  );
+    onError: (error) => {
+      showToast(error.message || "Failed to add comic", "error");
+    },
+  });
+
+  const handleAdd = (isbn: string) => {
+    addComic(isbn);
+  };
 
   return {
     query,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bangers, Geist_Mono, M_PLUS_Rounded_1c } from "next/font/google";
 
+import { QueryProvider } from "../presentation/providers/query-provider";
 import { ToastProvider } from "../presentation/providers/toast-provider";
 import "./globals.css";
 import { ReactNode } from "react";
@@ -37,7 +38,9 @@ const RootLayout = ({
       <body
         className={`${mplus.variable} ${bangers.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <ToastProvider>{children}</ToastProvider>
+        <QueryProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </QueryProvider>
       </body>
     </html>
   );
