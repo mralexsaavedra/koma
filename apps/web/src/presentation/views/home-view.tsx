@@ -7,7 +7,7 @@ interface HomeViewProps {
   comics: ComicViewModel[];
 }
 
-export function HomeView({ comics }: HomeViewProps) {
+export const HomeView = ({ comics }: HomeViewProps) => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <main className="mx-auto max-w-4xl space-y-12 px-4">
@@ -26,4 +26,4 @@ export function HomeView({ comics }: HomeViewProps) {
       </main>
     </div>
   );
-}
+};

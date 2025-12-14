@@ -1,4 +1,4 @@
-export function HomeHeader() {
+export const HomeHeader = () => {
   return (
     <header className="space-y-4 text-center">
       <h1 className="font-comic text-5xl font-extrabold tracking-wider text-gray-900">
@@ -9,4 +9,4 @@ export function HomeHeader() {
       </p>
     </header>
   );
-}
+};

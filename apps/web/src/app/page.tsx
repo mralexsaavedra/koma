@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Sovereign Comic Manager",
 };
 
-export default async function HomePage() {
+const HomePage = async () => {
   const comics = await comicRepo.listAll();
 
   const comicViewModels: ComicViewModel[] = comics.map((c) => ({
@@ -23,4 +23,6 @@ export default async function HomePage() {
   }));
 
   return <HomeView comics={comicViewModels} />;
-}
+};
+
+export default HomePage;

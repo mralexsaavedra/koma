@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { useComicSearch } from "../hooks/use-comic-search";
 
-export function SearchComicForm() {
+export const SearchComicForm = () => {
   const {
     query,
     setQuery,
@@ -82,4 +82,4 @@ export function SearchComicForm() {
       )}
     </div>
   );
-}
+};

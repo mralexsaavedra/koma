@@ -5,7 +5,7 @@ interface ComicGridProps {
   comics: ComicViewModel[];
 }
 
-export function ComicGrid({ comics }: ComicGridProps) {
+export const ComicGrid = ({ comics }: ComicGridProps) => {
   if (comics.length === 0) {
     return (
       <div className="col-span-full py-12 text-center text-gray-500">
@@ -21,4 +21,4 @@ export function ComicGrid({ comics }: ComicGridProps) {
       ))}
     </div>
   );
-}
+};

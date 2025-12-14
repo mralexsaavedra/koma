@@ -15,7 +15,7 @@ interface ToastContextValue {
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
-export function ToastProvider({ children }: { children: React.ReactNode }) {
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const showToast = useCallback(
@@ -47,10 +47,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       </div>
     </ToastContext.Provider>
   );
-}
+};
 
-export function useToast() {
+export const useToast = () => {
   const context = useContext(ToastContext);
   if (!context) throw new Error("useToast must be used within ToastProvider");
   return context;
-}
+};
