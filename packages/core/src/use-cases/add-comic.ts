@@ -16,19 +16,15 @@ export class AddComicUseCase {
   ) {}
 
   async execute(input: AddComicInput): Promise<Comic> {
-    // 1. Check if exists
     const existing = await this.comicRepo.findByIsbn(input.isbn);
     if (existing) {
       throw new Error(`Comic with ISBN ${input.isbn} already exists`);
     }
 
-    // 2. Fetch metadata
     const metadata = await this.metadataProvider.getByIsbn(input.isbn);
     if (!metadata) {
       throw new Error(`Metadata not found for ISBN ${input.isbn}`);
     }
-
-    // 3. Create Entity
     const newComic = new Comic(
       randomUUID(),
       metadata.isbn,
@@ -40,7 +36,6 @@ export class AddComicUseCase {
       new Date(),
     );
 
-    // 4. Persist
     await this.comicRepo.save(newComic);
 
     return newComic;

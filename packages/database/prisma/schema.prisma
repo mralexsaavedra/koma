@@ -8,12 +8,11 @@ datasource db {
 }
 
 model Comic {
-  id            String    @id // Generamos el UUID en el dominio, no en la DB
+  id            String    @id
   isbn          String    @unique
   title         String
   publisher     String?
   
-  // SQLite no soporta String[], así que lo guardamos como String (JSON stringified)
   authors       String    @default("[]") 
   
   status        String    @default("WANTED")

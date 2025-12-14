@@ -1,6 +1,6 @@
 "use client";
 
-import { useComicSearch } from "../hooks/use-comic-search";
+import { useComicSearch } from "../hooks/controllers/use-comic-search";
 import { SearchInput } from "./search-input";
 import { SearchResultsList } from "./search-results-list";
 
