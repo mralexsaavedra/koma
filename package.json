@@ -1,24 +1,18 @@
 {
   "name": "koma",
   "version": "0.1.0",
+  "description": "Self-hosted comic manager web application",
   "type": "module",
   "main": "index.js",
+  "packageManager": "pnpm@10.23.0",
+  "keywords": [],
+  "author": "Alexander Saavedra",
+  "license": "MIT",
   "scripts": {
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "*.{js,ts,json}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "keywords": [],
-  "author": "",
-  "description": "Self-hosted comic manager web application",
-  "license": "MIT",
-  "packageManager": "pnpm@10.23.0",
   "devDependencies": {
     "@koma/eslint-config": "workspace:*",
     "@koma/prettier-config": "workspace:*",
