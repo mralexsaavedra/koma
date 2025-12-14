@@ -13,7 +13,7 @@ export function HomeView({ comics }: HomeViewProps) {
       <main className="mx-auto max-w-4xl space-y-12 px-4">
         {/* Header */}
         <header className="space-y-4 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
+          <h1 className="font-comic text-5xl font-extrabold tracking-wider text-gray-900">
             Koma Library
           </h1>
           <p className="text-lg text-gray-600">
