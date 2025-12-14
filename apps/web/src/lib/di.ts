@@ -1,9 +1,9 @@
 import { AddComicUseCase } from "@koma/core";
 import { PrismaComicRepository } from "@koma/database";
 import {
-  MetadataService,
-  GoogleBooksAdapter,
   AniListAdapter,
+  GoogleBooksAdapter,
+  MetadataService,
 } from "@koma/metadata";
 
 const comicRepository = new PrismaComicRepository();

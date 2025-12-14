@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { comicRepo } from "@/lib/di";
 import { HomeView } from "@/presentation/views/home-view";
 

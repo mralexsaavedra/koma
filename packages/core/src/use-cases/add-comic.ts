@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
-import { Comic, CollectionStatus } from "../domain/comic.js";
+
+import { CollectionStatus, Comic } from "../domain/comic.js";
 import { IComicRepository } from "../ports/comic-repository.js";
 import { IMetadataProvider } from "../ports/metadata-provider.js";
 

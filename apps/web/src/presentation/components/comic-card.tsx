@@ -21,13 +21,13 @@ export function ComicCard({ comic }: ComicCardProps) {
         )}
       </div>
       <div className="space-y-1">
-        <h3 className="font-semibold text-gray-900 leading-snug">
+        <h3 className="leading-snug font-semibold text-gray-900">
           {comic.title}
         </h3>
-        <p className="text-sm text-gray-500 truncate">
+        <p className="truncate text-sm text-gray-500">
           {comic.authors.join(", ")}
         </p>
-        <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+        <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
           {comic.status}
         </span>
       </div>

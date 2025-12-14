@@ -1,5 +1,6 @@
-import { Comic, CollectionStatus } from "@koma/core";
 import { Comic as PrismaComic } from "@prisma/client";
+
+import { CollectionStatus, Comic } from "@koma/core";
 
 export class ComicMapper {
   static toDomain(raw: PrismaComic): Comic {

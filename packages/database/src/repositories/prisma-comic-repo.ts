@@ -1,5 +1,7 @@
-import { IComicRepository, Comic } from "@koma/core";
-import { prisma } from "../client.js"; // Tu instancia de Prisma Client
+import { Comic, IComicRepository } from "@koma/core";
+
+import { prisma } from "../client.js";
+// Tu instancia de Prisma Client
 import { ComicMapper } from "../mappers/comic-mapper.js";
 
 export class PrismaComicRepository implements IComicRepository {

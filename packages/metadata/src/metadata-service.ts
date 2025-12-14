@@ -1,6 +1,7 @@
-import type { IMetadataProvider, ComicMetadata } from "@koma/core";
-import type { IMetadataSource } from "./adapters/google-books.js";
+import type { ComicMetadata, IMetadataProvider } from "@koma/core";
+
 import type { IEnrichmentSource } from "./adapters/anilist.js";
+import type { IMetadataSource } from "./adapters/google-books.js";
 
 export class MetadataService implements IMetadataProvider {
   constructor(
