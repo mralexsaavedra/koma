@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+
 import { useComicSearch } from "../hooks/use-comic-search";
 
 export function SearchComicForm() {

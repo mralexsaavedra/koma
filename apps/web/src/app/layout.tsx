@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Bangers, M_PLUS_Rounded_1c } from "next/font/google";
+import { Bangers, Geist_Mono, M_PLUS_Rounded_1c } from "next/font/google";
 
 import { ToastProvider } from "../presentation/providers/toast-provider";
 import "./globals.css";

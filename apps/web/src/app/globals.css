@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --font-comic: var(--font-bangers);
-  --font-sans: var(--font-mplus);
+  --font-comic: var(--font-bangers), cursive;
+  --font-sans: var(--font-mplus), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Fallback/Force base styles if tailwind utility on body fails */
+body {
+  font-family: var(--font-mplus), ui-sans-serif, system-ui, sans-serif;
 }
