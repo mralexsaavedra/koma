@@ -2,4 +2,5 @@
 
 @theme {
   --font-comic: var(--font-bangers);
+  --font-sans: var(--font-mplus);
 }
