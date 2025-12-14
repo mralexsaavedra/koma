@@ -1,7 +1,7 @@
 {
   "name": "@koma/cli",
   "version": "0.0.0",
-  "description": "CLI Integration for Koma",
+  "description": "CLI tools for testing and managing Koma",
   "main": "src/main.ts",
   "dependencies": {
     "@koma/core": "workspace:*",

@@ -1,7 +1,7 @@
 {
   "name": "@koma/database",
   "version": "0.0.0",
-  "description": "",
+  "description": "Prisma-based database implementation for Koma",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {

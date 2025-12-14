@@ -1,5 +1,5 @@
 {
-  "name": "@koma/tsconfig",
+  "description": "Shared TypeScript configuration for Koma monorepo",
   "version": "0.0.0",
   "private": true,
   "files": [

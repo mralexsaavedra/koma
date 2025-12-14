@@ -1,7 +1,7 @@
 {
   "name": "@koma/metadata",
   "version": "0.0.0",
-  "description": "",
+  "description": "Metadata providers and adapters (Google Books, AniList) for Koma",
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
