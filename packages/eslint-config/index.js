@@ -4,6 +4,9 @@ import tseslint from 'typescript-eslint';
 import globals from 'globals';
 
 export const config = [
+  {
+    ignores: ['**/dist/**', '**/.next/**', '**/node_modules/**', '**/.turbo/**'],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
