@@ -1,7 +1,7 @@
 import { ComicViewModel } from "../view-models/comic-view-model";
 import { HomeHeader } from "../components/home-header";
 import { ComicGrid } from "../components/comic-grid";
-import { SearchComicForm } from "../components/search-comic-form";
+import { SearchSection } from "../components/search-section";
 
 interface HomeViewProps {
   comics: ComicViewModel[];
@@ -14,7 +14,7 @@ export const HomeView = ({ comics }: HomeViewProps) => {
         <HomeHeader />
 
         <section>
-          <SearchComicForm />
+          <SearchSection />
         </section>
 
         <section>
