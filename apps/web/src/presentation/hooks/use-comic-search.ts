@@ -4,11 +4,14 @@ import { ComicMetadata } from "@koma/core";
 
 import { addComicAction, searchComicsAction } from "@/actions/comic-actions";
 
+import { useToast } from "../providers/toast-provider";
+
 export const useComicSearch = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ComicMetadata[]>([]);
   const [isSearching, startTransition] = useTransition();
   const [isAdding, startAddTransition] = useTransition();
+  const { showToast } = useToast();
 
   const handleSearch = useCallback(
     (e: React.FormEvent) => {
@@ -23,14 +26,21 @@ export const useComicSearch = () => {
     [query],
   );
 
-  const handleAdd = useCallback((isbn: string) => {
-    startAddTransition(async () => {
-      const formData = new FormData();
-      formData.append("isbn", isbn);
-      await addComicAction(formData);
-      alert("Comic added!");
-    });
-  }, []);
+  const handleAdd = useCallback(
+    (isbn: string) => {
+      startAddTransition(async () => {
+        try {
+          const formData = new FormData();
+          formData.append("isbn", isbn);
+          await addComicAction(formData);
+          showToast("Comic added to collection!", "success");
+        } catch {
+          showToast("Failed to add comic. Try again.", "error");
+        }
+      });
+    },
+    [showToast],
+  );
 
   return {
     query,

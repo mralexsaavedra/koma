@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useComicSearch } from "../hooks/use-comic-search";
 
 export function SearchComicForm() {
@@ -39,12 +40,14 @@ export function SearchComicForm() {
               key={comic.isbn}
               className="flex items-start gap-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm transition hover:shadow-md"
             >
-              <div className="aspect-2/3 w-20 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
+              <div className="relative aspect-2/3 w-20 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
                 {comic.coverUrl ? (
-                  <img
+                  <Image
                     src={comic.coverUrl}
                     alt={comic.title}
-                    className="h-full w-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="80px"
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-xs text-gray-400">
