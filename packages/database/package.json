@@ -12,6 +12,7 @@
     "@prisma/client": "5.22.0"
   },
   "devDependencies": {
+    "@koma/eslint-config": "workspace:*",
     "@koma/tsconfig": "workspace:*",
     "@types/node": "^25.0.1",
     "prisma": "5.22.0"

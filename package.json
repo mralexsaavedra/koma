@@ -1,13 +1,21 @@
 {
   "name": "koma",
   "version": "0.1.0",
+  "type": "module",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
   "keywords": [],
   "author": "",
   "description": "Self-hosted comic manager web application",
   "license": "MIT",
   "packageManager": "pnpm@10.23.0",
   "devDependencies": {
+    "@koma/eslint-config": "workspace:*",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3"
   }
 }

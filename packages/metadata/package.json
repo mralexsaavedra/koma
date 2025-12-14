@@ -11,6 +11,7 @@
     "@koma/core": "workspace:*"
   },
   "devDependencies": {
+    "@koma/eslint-config": "workspace:*",
     "@koma/tsconfig": "workspace:*",
     "@types/node": "^25.0.1"
   }
