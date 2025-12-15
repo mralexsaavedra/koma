@@ -1,6 +1,6 @@
-import { ComicGrid } from "../components/comic-grid";
-import { HomeHeader } from "../components/home-header";
-import { SearchSection } from "../components/search-section";
+import { ComicGrid } from "../components/organisms/comic-grid";
+import { HomeHeader } from "../components/organisms/home-header";
+import { SearchSection } from "../components/organisms/search-section";
 import { ComicViewModel } from "../view-models/comic-view-model";
 
 interface HomeViewProps {

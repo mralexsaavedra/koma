@@ -1,5 +1,5 @@
-import { ComicViewModel } from "../view-models/comic-view-model";
-import { ComicCard } from "./comic-card";
+import { ComicViewModel } from "../../view-models/comic-view-model";
+import { ComicCard } from "../molecules/comic-card";
 
 interface ComicGridProps {
   comics: ComicViewModel[];

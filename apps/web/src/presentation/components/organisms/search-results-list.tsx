@@ -1,6 +1,6 @@
 import { ComicMetadata } from "@koma/core";
 
-import { SearchResultItem } from "./search-result-item";
+import { SearchResultItem } from "../molecules/search-result-item";
 
 interface SearchResultsListProps {
   results: ComicMetadata[];

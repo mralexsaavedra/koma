@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { memo } from "react";
 
-import { ComicViewModel } from "../view-models/comic-view-model";
+import { ComicViewModel } from "../../view-models/comic-view-model";
 
 interface ComicCardProps {
   comic: ComicViewModel;
