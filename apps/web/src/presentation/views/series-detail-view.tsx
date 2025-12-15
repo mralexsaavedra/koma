@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowLeftIcon } from "@/presentation/components/atoms/icons/arrow-left-icon";
+import { ImageWithFallback } from "@/presentation/components/atoms/image-with-fallback";
 import { ComicSeriesGrid } from "@/presentation/components/organisms/comic-series-grid";
 import { Navbar } from "@/presentation/components/organisms/navbar";
 import { APP_ROUTES } from "@/presentation/constants/routes";
@@ -36,20 +36,14 @@ export const SeriesDetailView = ({
           {/* Series Cover */}
           <div className="shrink-0">
             <div className="relative aspect-2/3 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md sm:w-48">
-              {series.coverUrl ? (
-                <Image
-                  src={series.coverUrl}
-                  alt={series.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 128px, 192px"
-                  priority
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gray-200">
-                  <span className="text-gray-400">No Image</span>
-                </div>
-              )}
+              <ImageWithFallback
+                src={series.coverUrl}
+                alt={series.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 128px, 192px"
+                priority
+              />
             </div>
           </div>
 
