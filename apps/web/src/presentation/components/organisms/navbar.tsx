@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { UserIcon } from "@/presentation/components/atoms/icons/user-icon";
 import { KomaLogo } from "@/presentation/components/atoms/koma-logo";
+import { cn } from "@/presentation/utils/cn";
 
 const NAV_ITEMS = [
   { label: "Library", href: "/" },
@@ -35,11 +36,12 @@ export const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`hover:text-primary-600 text-sm ${
+                className={cn(
+                  "hover:text-primary-600 text-sm",
                   isActive
                     ? "font-bold text-gray-900"
-                    : "font-medium text-gray-500"
-                }`}
+                    : "font-medium text-gray-500",
+                )}
               >
                 {item.label}
               </Link>

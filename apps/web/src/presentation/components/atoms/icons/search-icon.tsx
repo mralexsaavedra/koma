@@ -1,3 +1,5 @@
+import { cn } from "@/presentation/utils/cn";
+
 export const SearchIcon = ({
   className = "h-5 w-5",
 }: {
@@ -7,7 +9,7 @@ export const SearchIcon = ({
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     fill="currentColor"
-    className={className}
+    className={cn(className)}
   >
     <path
       fillRule="evenodd"

@@ -1,3 +1,5 @@
+import { cn } from "@/presentation/utils/cn";
+
 export const UserIcon = ({ className = "h-5 w-5" }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -5,7 +7,7 @@ export const UserIcon = ({ className = "h-5 w-5" }: { className?: string }) => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className={className}
+    className={cn(className)}
   >
     <path
       strokeLinecap="round"
