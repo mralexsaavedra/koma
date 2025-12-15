@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { comicRepo } from "@/lib/di";
+import { repositories } from "@/lib/di";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 import { LibraryView } from "@/presentation/views/library-view";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 const LibraryPage = async () => {
-  const comics = await comicRepo.listAll();
+  const comics = await repositories.comic.listAll();
 
   const comicViewModels: ComicViewModel[] = comics.map((c) => ({
     id: c.id,

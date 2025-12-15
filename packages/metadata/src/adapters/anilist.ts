@@ -1,11 +1,37 @@
 import { ComicMetadata } from "@koma/core";
 
+import { IMetadataSource } from "./google-books";
+
 export interface IEnrichmentSource {
   searchByTitle(title: string): Promise<Partial<ComicMetadata> | null>;
 }
 
 interface AniListResponse {
   data?: {
+    Page?: {
+      media?: Array<{
+        id: number;
+        title: {
+          romaji: string;
+          english?: string;
+          native?: string;
+        };
+        coverImage: {
+          extraLarge: string;
+        };
+        description?: string;
+        staff?: {
+          edges?: Array<{
+            role: string;
+            node: {
+              name: {
+                full: string;
+              };
+            };
+          }>;
+        };
+      }>;
+    };
     Media?: {
       title: {
         romaji: string;
@@ -20,7 +46,66 @@ interface AniListResponse {
   };
 }
 
-export class AniListAdapter implements IEnrichmentSource {
+export class AniListAdapter implements IMetadataSource, IEnrichmentSource {
+  async getByIsbn(_isbn: string): Promise<ComicMetadata | null> {
+    // AniList is not good for searching by ISBN directly
+    return null;
+  }
+
+  async search(query: string): Promise<ComicMetadata[]> {
+    const q = `
+      query ($search: String) {
+        Page(page: 1, perPage: 10) {
+          media(search: $search, type: MANGA) {
+            id
+            title { romaji english native }
+            coverImage { extraLarge }
+            description
+            staff(perPage: 3) {
+              edges {
+                role
+                node {
+                  name { full }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    const url = "https://graphql.anilist.co";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ query: q, variables: { search: query } }),
+    };
+
+    try {
+      const res = await fetch(url, options);
+      const data = (await res.json()) as AniListResponse;
+      const mediaList = data.data?.Page?.media || [];
+
+      return mediaList.map((media) => ({
+        // AniList doesn't provide ISBNs in the search list usually, we use a placeholder or empty.
+        // We use "AL-{id}" as a pseudo-ISBN to provide a unique identifier.
+        isbn: `AL-${media.id}`,
+        title: media.title.english || media.title.romaji,
+        coverUrl: media.coverImage.extraLarge,
+        synopsis: media.description || "",
+        authors: media.staff?.edges?.map((e) => e.node.name.full) || [],
+        publisher: "", // AniList doesn't typically provide publisher in this view
+        pageCount: 0,
+        publishedDate: undefined,
+      }));
+    } catch {
+      return [];
+    }
+  }
+
   async searchByTitle(title: string): Promise<Partial<ComicMetadata> | null> {
     const cleanTitle = title.replace(/\d+$/, "").trim();
 

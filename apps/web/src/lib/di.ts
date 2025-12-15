@@ -6,13 +6,20 @@ import {
   MetadataService,
 } from "@koma/metadata";
 
-const comicRepository = new PrismaComicRepository();
+// Adapters
+const googleBooksAdapter = new GoogleBooksAdapter();
+const aniListAdapter = new AniListAdapter();
 
+// Services
 const metadataService = new MetadataService(
-  [new GoogleBooksAdapter()],
-  new AniListAdapter(),
+  [googleBooksAdapter, aniListAdapter], // Search providers
+  aniListAdapter, // Enrichment provider
 );
 
+// Repositories
+const comicRepository = new PrismaComicRepository();
+
+// Use Cases
 export const addComicUseCase = new AddComicUseCase(
   comicRepository,
   metadataService,
@@ -22,4 +29,7 @@ export const searchComicsExternalUseCase = new SearchComicsExternalUseCase(
   metadataService,
 );
 
-export const comicRepo = comicRepository;
+// Exports for direct access if needed
+export const repositories = {
+  comic: comicRepository,
+};
