@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { ComicMetadata } from "@koma/core";
 
 import { addComicUseCase, searchComicsExternalUseCase } from "@/lib/di";
+import { APP_ROUTES } from "@/presentation/constants/routes";
 
 export async function searchComicsAction(
   query: string,
@@ -21,7 +22,7 @@ export async function addComicAction(formData: FormData) {
   }
 
   const comic = await addComicUseCase.execute({ isbn });
-  revalidatePath("/");
+  revalidatePath(APP_ROUTES.HOME);
 
   return { id: comic.id };
 }

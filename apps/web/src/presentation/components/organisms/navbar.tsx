@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 
 import { UserIcon } from "@/presentation/components/atoms/icons/user-icon";
 import { KomaLogo } from "@/presentation/components/atoms/koma-logo";
+import { APP_ROUTES } from "@/presentation/constants/routes";
 import { cn } from "@/presentation/utils/cn";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/" },
-  { label: "Library", href: "/library" },
-  { label: "Lists", href: "#" },
-  { label: "Activity", href: "#" },
+  { label: "Home", href: APP_ROUTES.HOME },
+  { label: "Library", href: APP_ROUTES.LIBRARY },
+  { label: "Lists", href: "/lists" },
+  { label: "Activity", href: "/activity" },
 ];
 
 export const Navbar = () => {

@@ -7,6 +7,7 @@ import { HeartIcon } from "@/presentation/components/atoms/icons/heart-icon";
 import { ShoppingCartIcon } from "@/presentation/components/atoms/icons/shopping-cart-icon";
 import { ComicSeriesGrid } from "@/presentation/components/organisms/comic-series-grid";
 import { Navbar } from "@/presentation/components/organisms/navbar";
+import { APP_ROUTES } from "@/presentation/constants/routes";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface ComicDetailViewProps {
@@ -26,7 +27,7 @@ export const ComicDetailView = ({
         {/* Back Link */}
         <div className="mb-6">
           <Link
-            href="/library"
+            href={APP_ROUTES.LIBRARY}
             className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
           >
             <ArrowLeftIcon className="h-4 w-4" />
@@ -37,7 +38,7 @@ export const ComicDetailView = ({
         <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
           {/* Left Column: Cover & Actions */}
           <div className="flex flex-col gap-6">
-            <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-gray-100 shadow-xl ring-1 ring-gray-900/5 sm:max-w-[300px]">
+            <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-gray-100 shadow-xl ring-1 ring-gray-900/5 sm:max-w-75">
               {comic.coverUrl ? (
                 <Image
                   src={comic.coverUrl}
