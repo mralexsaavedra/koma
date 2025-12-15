@@ -9,8 +9,12 @@
   "author": "Alexander Saavedra",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint .",
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm -r build",
+    "start": "pnpm --filter web start",
+    "lint": "pnpm -r lint",
     "format": "prettier --write .",
+    "clean": "rm -rf node_modules **/*/node_modules **/*/.next **/*/.turbo",
     "prepare": "husky"
   },
   "devDependencies": {

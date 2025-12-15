@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useMemo, useState } from "react";
 
 import { useToast } from "../../providers/toast-provider";
@@ -8,12 +9,16 @@ export const useComicSearch = () => {
   const [query, setQuery] = useState("");
   const [executedQuery, setExecutedQuery] = useState("");
   const { showToast } = useToast();
+  const router = useRouter();
 
   const { data: queryResults = [], isFetching: isSearching } =
     useSearchComicsQuery(executedQuery);
 
   const { mutate: addComic, isPending: isAdding } = useAddComicMutation(
-    () => showToast("Comic added to your collection!", "success"),
+    () => {
+      showToast("Comic added to your collection!", "success");
+      router.refresh();
+    },
     (error) => showToast(error.message || "Failed to add comic", "error"),
   );
 
