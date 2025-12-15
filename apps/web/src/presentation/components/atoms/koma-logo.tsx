@@ -1,5 +1,7 @@
-export const KomaLogo = () => (
-  <div className="flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4">
+export const KomaLogo = ({ className = "" }: { className?: string }) => (
+  <div
+    className={`flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-4 ${className}`}
+  >
     <div className="bg-primary-500 shadow-primary-500/30 flex items-center justify-center rounded-2xl px-5 py-3 shadow-lg">
       <span className="font-mplus text-5xl font-bold text-white sm:text-6xl">
         コマ

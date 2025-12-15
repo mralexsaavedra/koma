@@ -1,5 +1,5 @@
 import { ComicGrid } from "@/presentation/components/organisms/comic-grid";
-import { HomeHeader } from "@/presentation/components/organisms/home-header";
+import { Navbar } from "@/presentation/components/organisms/navbar";
 import { SearchSection } from "@/presentation/components/organisms/search-section";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
@@ -10,14 +10,11 @@ interface HomeViewProps {
 export const HomeView = ({ comics }: HomeViewProps) => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 transition-colors duration-300">
+      <Navbar />
+
       <div className="relative">
-        {/* Abstract background gradient - simplified for light mode */}
-        <div className="from-primary-100/40 absolute inset-0 -z-10 h-125 w-full bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] via-gray-50/0 to-transparent blur-3xl" />
-
         <main className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 xl:px-12 2xl:max-w-480">
-          <div className="mb-12 space-y-8">
-            <HomeHeader />
-
+          <div className="mb-12">
             <section className="w-full transition-all duration-500 ease-in-out">
               <SearchSection />
             </section>
