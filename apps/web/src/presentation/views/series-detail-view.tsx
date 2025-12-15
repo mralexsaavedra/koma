@@ -1,10 +1,6 @@
-import Link from "next/link";
-
-import { ArrowLeftIcon } from "@/presentation/components/atoms/icons/arrow-left-icon";
 import { ImageWithFallback } from "@/presentation/components/atoms/image-with-fallback";
 import { ComicSeriesGrid } from "@/presentation/components/organisms/comic-series-grid";
 import { Navbar } from "@/presentation/components/organisms/navbar";
-import { APP_ROUTES } from "@/presentation/constants/routes";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface SeriesDetailViewProps {
@@ -21,16 +17,6 @@ export const SeriesDetailView = ({
       <Navbar />
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 xl:px-12 2xl:max-w-480">
-        <div className="mb-6">
-          <Link
-            href={APP_ROUTES.LIBRARY}
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
-          >
-            <ArrowLeftIcon className="h-4 w-4" />
-            <span>Back to Library</span>
-          </Link>
-        </div>
-
         {/* Series Header */}
         <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
           {/* Series Cover */}

@@ -1,12 +1,8 @@
-import Link from "next/link";
-
-import { ArrowLeftIcon } from "@/presentation/components/atoms/icons/arrow-left-icon";
 import { ImageWithFallback } from "@/presentation/components/atoms/image-with-fallback";
 import { ComicActionButtons } from "@/presentation/components/molecules/comic-action-buttons";
 import { ComicInfoGrid } from "@/presentation/components/molecules/comic-info-grid";
 import { ComicMetadataBar } from "@/presentation/components/molecules/comic-metadata-bar";
 import { Navbar } from "@/presentation/components/organisms/navbar";
-import { APP_ROUTES } from "@/presentation/constants/routes";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface ComicDetailViewProps {
@@ -19,17 +15,6 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
       <Navbar />
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 xl:px-12 2xl:max-w-480">
-        {/* Back Link */}
-        <div className="mb-6">
-          <Link
-            href={APP_ROUTES.LIBRARY}
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
-          >
-            <ArrowLeftIcon className="h-4 w-4" />
-            <span>Back to Library</span>
-          </Link>
-        </div>
-
         <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
           {/* Left Column: Cover & Actions */}
           <div className="flex flex-col gap-6">
