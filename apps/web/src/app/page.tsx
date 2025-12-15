@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Sovereign Comic Manager",
 };
 
+export const dynamic = "force-dynamic";
+
 const HomePage = async () => {
   const comics = await comicRepo.listAll();
 
