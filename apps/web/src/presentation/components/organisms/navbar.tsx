@@ -8,14 +8,14 @@ export const Navbar = () => {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          className="flex shrink-0 items-center gap-2 transition-opacity hover:opacity-80"
         >
           <div className="flex origin-left scale-[0.4] items-center">
             <KomaLogo />
           </div>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
           <Link
             href="/"
             className="hover:text-primary-600 text-sm font-bold text-gray-900"
