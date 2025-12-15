@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useMemo, useState } from "react";
 
+import { APP_ROUTES } from "@/presentation/constants/routes";
 import { useSearchComicsQuery } from "@/presentation/hooks/queries/use-search-comics-query";
 
 export const useComicSearch = () => {
@@ -22,7 +23,7 @@ export const useComicSearch = () => {
 
   const handleView = useCallback(
     (isbn: string) => {
-      router.push(`/library/${isbn}`);
+      router.push(APP_ROUTES.COMIC_DETAIL(isbn));
     },
     [router],
   );
