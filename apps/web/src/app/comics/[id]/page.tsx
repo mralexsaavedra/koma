@@ -6,6 +6,7 @@ import { SeriesTitleNormalizer } from "@koma/core";
 import { getComicDetailsUseCase, searchComicsExternalUseCase } from "@/lib/di";
 import { ComicMapper } from "@/presentation/mappers/comic-mapper";
 import { ComicDetailView } from "@/presentation/views/comic-detail-view";
+import { SeriesDetailView } from "@/presentation/views/series-detail-view";
 
 export const dynamic = "force-dynamic";
 
@@ -47,6 +48,17 @@ export default async function ComicDetailPage({ params }: Props) {
 
   const comicViewModel = ComicMapper.toViewModel(comic);
   const relatedComicsViewModel = ComicMapper.toViewModelList(relatedMetas);
+
+  const isExplicitSeries = comic.isbn.startsWith("AL-");
+
+  if (isExplicitSeries) {
+    return (
+      <SeriesDetailView
+        series={comicViewModel}
+        volumes={relatedComicsViewModel}
+      />
+    );
+  }
 
   return (
     <ComicDetailView
