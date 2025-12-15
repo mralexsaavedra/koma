@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { repositories } from "@/lib/di";
+import { getComicDetailsUseCase } from "@/lib/di";
 import { ComicDetailView } from "@/presentation/views/comic-detail-view";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +12,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const comic = await repositories.comic.findById(id);
+  const comic = await getComicDetailsUseCase.execute({ idOrIsbn: id });
 
   if (!comic) {
     return {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ComicDetailPage({ params }: Props) {
   const { id } = await params;
-  const comic = await repositories.comic.findById(id);
+  const comic = await getComicDetailsUseCase.execute({ idOrIsbn: id });
 
   if (!comic) {
     notFound();
