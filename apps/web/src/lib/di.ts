@@ -1,6 +1,7 @@
 import {
   AddComicUseCase,
   GetComicDetailsUseCase,
+  GetLibraryUseCase,
   SearchComicsExternalUseCase,
 } from "@koma/core";
 import { PrismaComicRepository } from "@koma/database";
@@ -23,11 +24,18 @@ const metadataService = new MetadataService(
 // Repositories
 const comicRepository = new PrismaComicRepository();
 
+// Exports for direct access if needed
+export const repositories = {
+  comic: comicRepository,
+};
+
 // Use Cases
 export const addComicUseCase = new AddComicUseCase(
   comicRepository,
   metadataService,
 );
+
+export const getLibraryUseCase = new GetLibraryUseCase(comicRepository);
 
 export const searchComicsExternalUseCase = new SearchComicsExternalUseCase(
   metadataService,
@@ -37,8 +45,3 @@ export const getComicDetailsUseCase = new GetComicDetailsUseCase(
   comicRepository,
   metadataService,
 );
-
-// Exports for direct access if needed
-export const repositories = {
-  comic: comicRepository,
-};

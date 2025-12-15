@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { SeriesTitleNormalizer } from "@koma/core";
 
-import { repositories } from "@/lib/di";
+import { getLibraryUseCase } from "@/lib/di";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 import { LibraryView } from "@/presentation/views/library-view";
 
@@ -13,31 +13,18 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-// ...
-
 const LibraryPage = async () => {
-  const comics = await repositories.comic.listAll();
+  const librarySeries = await getLibraryUseCase.execute();
 
-  // Group comics by normalized series title
-  const seriesMap = new Map<string, (typeof comics)[0]>();
-
-  comics.forEach((comic) => {
-    const normalizedTitle = SeriesTitleNormalizer.normalize(comic.title);
-    if (!seriesMap.has(normalizedTitle)) {
-      seriesMap.set(normalizedTitle, comic);
-    }
-  });
-
-  const uniqueSeries = Array.from(seriesMap.values());
-
-  const comicViewModels: ComicViewModel[] = uniqueSeries.map((c) => ({
-    id: c.id,
-    isbn: `SERIES-${c.isbn}`, // Mark as series visually/logically if needed, but ID is what matters for link
-    title: SeriesTitleNormalizer.normalize(c.title), // Use Series title
-    publisher: c.publisher,
-    authors: c.authors,
-    status: c.status,
-    coverUrl: c.coverUrl,
+  const comicViewModels: ComicViewModel[] = librarySeries.map((series) => ({
+    id: series.representativeComic.id,
+    isbn: `SERIES-${series.representativeComic.isbn}`,
+    title: SeriesTitleNormalizer.normalize(series.representativeComic.title),
+    publisher: series.representativeComic.publisher,
+    authors: series.representativeComic.authors,
+    status: series.representativeComic.status,
+    coverUrl: series.representativeComic.coverUrl,
+    // potentially pass totalVolumes to view model if needed
   }));
 
   return <LibraryView comics={comicViewModels} />;
