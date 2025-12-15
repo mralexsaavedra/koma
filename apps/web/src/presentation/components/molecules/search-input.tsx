@@ -39,7 +39,7 @@ export const SearchInput = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for comics by title, author, or ISBN..."
-          className="focus:border-primary-500 focus:ring-primary-500/10 w-full rounded-full border border-gray-200 bg-white/80 py-4 pr-32 pl-12 text-lg shadow-sm backdrop-blur-sm transition-all placeholder:text-gray-400 focus:bg-white focus:ring-4 focus:outline-none"
+          className="w-full rounded-full border border-gray-200 bg-white/80 py-4 pr-32 pl-12 text-lg shadow-sm backdrop-blur-sm transition-all placeholder:text-gray-400 focus:border-gray-900 focus:bg-white focus:ring-4 focus:ring-gray-200 focus:outline-none"
         />
         <div className="absolute inset-y-1 right-1">
           <button
