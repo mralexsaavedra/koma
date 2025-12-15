@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Bangers, M_PLUS_Rounded_1c } from "next/font/google";
 import { ReactNode } from "react";
 
-import { QueryProvider } from "../presentation/providers/query-provider";
-import { ToastProvider } from "../presentation/providers/toast-provider";
+import { QueryProvider } from "@/presentation/providers/query-provider";
+import { ToastProvider } from "@/presentation/providers/toast-provider";
+
 import "./globals.css";
 
 const bangers = Bangers({

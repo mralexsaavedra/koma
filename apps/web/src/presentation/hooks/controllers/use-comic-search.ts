@@ -1,9 +1,9 @@
 import { useRouter } from "next/navigation";
 import { FormEvent, useCallback, useMemo, useState } from "react";
 
-import { useToast } from "../../providers/toast-provider";
-import { useAddComicMutation } from "../mutations/use-add-comic-mutation";
-import { useSearchComicsQuery } from "../queries/use-search-comics-query";
+import { useAddComicMutation } from "@/presentation/hooks/mutations/use-add-comic-mutation";
+import { useSearchComicsQuery } from "@/presentation/hooks/queries/use-search-comics-query";
+import { useToast } from "@/presentation/providers/toast-provider";
 
 export const useComicSearch = () => {
   const [query, setQuery] = useState("");

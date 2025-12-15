@@ -1,4 +1,4 @@
-import { KomaLogo } from "../atoms/koma-logo";
+import { KomaLogo } from "@/presentation/components/atoms/koma-logo";
 
 export const HomeHeader = () => {
   return (

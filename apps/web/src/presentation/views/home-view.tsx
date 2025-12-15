@@ -1,7 +1,7 @@
-import { ComicGrid } from "../components/organisms/comic-grid";
-import { HomeHeader } from "../components/organisms/home-header";
-import { SearchSection } from "../components/organisms/search-section";
-import { ComicViewModel } from "../view-models/comic-view-model";
+import { ComicGrid } from "@/presentation/components/organisms/comic-grid";
+import { HomeHeader } from "@/presentation/components/organisms/home-header";
+import { SearchSection } from "@/presentation/components/organisms/search-section";
+import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface HomeViewProps {
   comics: ComicViewModel[];

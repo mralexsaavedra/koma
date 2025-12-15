@@ -1,7 +1,7 @@
 "use client";
 
-import { useComicSearch } from "../../hooks/controllers/use-comic-search";
-import { SearchInput } from "../molecules/search-input";
+import { useComicSearch } from "@/presentation/hooks/controllers/use-comic-search";
+import { SearchInput } from "@/presentation/components/molecules/search-input";
 import { SearchResultsList } from "./search-results-list";
 
 export const SearchSection = () => {
