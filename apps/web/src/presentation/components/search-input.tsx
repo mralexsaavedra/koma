@@ -23,7 +23,7 @@ export const SearchInput = ({
       <div className="relative w-full">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
           <svg
-            className="h-5 w-5 text-zinc-400"
+            className="h-5 w-5 text-gray-400"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -39,13 +39,13 @@ export const SearchInput = ({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for comics by title, author, or ISBN..."
-          className="w-full rounded-full border border-zinc-200 bg-white/80 py-4 pr-32 pl-12 text-lg shadow-sm backdrop-blur-sm transition-all placeholder:text-zinc-400 focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 focus:outline-none dark:border-zinc-800 dark:bg-zinc-900/80 dark:text-white dark:focus:border-indigo-500 dark:focus:bg-zinc-900"
+          className="w-full rounded-full border border-gray-200 bg-white/80 py-4 pr-32 pl-12 text-lg shadow-sm backdrop-blur-sm transition-all placeholder:text-gray-400 focus:border-primary-500 focus:bg-white focus:ring-4 focus:ring-primary-500/10 focus:outline-none dark:border-gray-800 dark:bg-gray-900/80 dark:text-white dark:focus:border-primary-500 dark:focus:bg-gray-900"
         />
         <div className="absolute inset-y-1 right-1">
           <button
             type="submit"
             disabled={isSearching}
-            className="flex h-full items-center rounded-full bg-zinc-900 px-6 font-medium text-white transition-transform hover:scale-105 hover:bg-zinc-800 disabled:opacity-70 disabled:hover:scale-100 disabled:hover:bg-zinc-900 dark:bg-indigo-600 dark:hover:bg-indigo-500"
+            className="flex h-full items-center rounded-full bg-gray-900 px-6 font-medium text-white transition-transform hover:scale-105 hover:bg-gray-800 disabled:opacity-70 disabled:hover:scale-100 disabled:hover:bg-gray-900 dark:bg-primary-600 dark:hover:bg-primary-500"
           >
             {isSearching ? (
               <span className="flex items-center gap-2">
