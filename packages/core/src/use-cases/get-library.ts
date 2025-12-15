@@ -30,9 +30,16 @@ export class GetLibraryUseCase {
     const library: LibrarySeries[] = [];
 
     for (const [title, comics] of seriesMap.entries()) {
-      // Sort comics by volume number/title if needed, but for now we just want a representative
-      // Ideally pick volume 1 or the earliest volume as representative
-      const representative = comics[0]; // Simplification for now
+      // Sort comics by title to pick the earliest volume as representative
+      comics.sort((a, b) => {
+        // Simple heuristic: title comparison handles "Vol 1" < "Vol 2" well enough
+        return a.title.localeCompare(b.title, undefined, {
+          numeric: true,
+          sensitivity: "base",
+        });
+      });
+
+      const representative = comics[0];
 
       library.push({
         seriesTitle: title,

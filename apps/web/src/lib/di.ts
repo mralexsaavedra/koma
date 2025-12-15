@@ -50,4 +50,5 @@ export const getComicDetailsUseCase = new GetComicDetailsUseCase(
 export const getSeriesDetailsUseCase = new GetSeriesDetailsUseCase(
   getComicDetailsUseCase,
   searchComicsExternalUseCase,
+  comicRepository,
 );

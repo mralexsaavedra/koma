@@ -1,3 +1,4 @@
+import { SeriesTitleNormalizer } from "../domain/services/series-title-normalizer";
 import { ComicMetadata, IMetadataProvider } from "../ports/metadata-provider";
 
 export interface SearchComicsExternalInput {
@@ -52,15 +53,9 @@ export class SearchComicsExternalUseCase {
 
     for (const result of results) {
       // 1. Normalize title to identify series
-      // Remove "Vol. 1", "#1", "No 1", "No 19/72", etc.
-      let seriesTitle = result.title
-        .toLowerCase()
-        .replace(/\b(vol|no|volume|part|v)\.?\s*\d+(\s*\/\s*\d+)?/g, "") // Vol. 1, No 19/72
-        .replace(/#\d+/g, "") // #1
-        .replace(/\s\d+\s*(\/\s*\d+)?$/g, "") // " 63" or " 63/72" at end
-        .replace(/[^\w\s]/g, "") // Remove remaining special chars like / or - to be safe
-        .replace(/\s+/g, " ")
-        .trim();
+      let seriesTitle = SeriesTitleNormalizer.normalize(
+        result.title,
+      ).toLowerCase();
 
       // If it's very short (e.g. just a number), ignore this heuristic and keep original
       if (seriesTitle.length < 2) {
