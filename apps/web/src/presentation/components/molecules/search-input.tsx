@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent } from "react";
+import { ChangeEvent, FormEvent } from "react";
 
 import { SearchIcon } from "@/presentation/components/atoms/icons/search-icon";
 import { SpinnerIcon } from "@/presentation/components/atoms/icons/spinner-icon";
@@ -18,6 +18,10 @@ export const SearchInput = ({
   isSearching,
   onSearch,
 }: SearchInputProps) => {
+  const handleQueryChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <form
       onSubmit={onSearch}
@@ -30,7 +34,7 @@ export const SearchInput = ({
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleQueryChange}
           placeholder="Search for comics by title, author, or ISBN..."
           className="w-full rounded-full border border-gray-200 bg-white/80 py-4 pr-32 pl-12 text-lg shadow-sm backdrop-blur-sm transition-all placeholder:text-gray-400 focus:border-gray-900 focus:bg-white focus:ring-4 focus:ring-gray-200 focus:outline-none"
         />

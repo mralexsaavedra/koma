@@ -57,11 +57,13 @@ interface AniListResponse {
   };
 }
 
+const ANILIST_PREFIX = "AL-";
+
 export class AniListAdapter implements IMetadataSource, IEnrichmentSource {
   async getByIsbn(isbn: string): Promise<ComicMetadata | null> {
     // Check if it's our custom AniList ID format
-    if (isbn.startsWith("AL-")) {
-      const id = parseInt(isbn.replace("AL-", ""), 10);
+    if (isbn.startsWith(ANILIST_PREFIX)) {
+      const id = parseInt(isbn.replace(ANILIST_PREFIX, ""), 10);
       return this.getById(id);
     }
     return null;
@@ -105,7 +107,7 @@ export class AniListAdapter implements IMetadataSource, IEnrichmentSource {
       if (!media) return null;
 
       return {
-        isbn: `AL-${media.id}`,
+        isbn: `${ANILIST_PREFIX}${media.id}`,
         title: media.title.english || media.title.romaji,
         coverUrl: media.coverImage.extraLarge,
         synopsis: media.description || "",
@@ -159,7 +161,7 @@ export class AniListAdapter implements IMetadataSource, IEnrichmentSource {
       return mediaList.map((media) => ({
         // AniList doesn't provide ISBNs in the search list usually, we use a placeholder or empty.
         // We use "AL-{id}" as a pseudo-ISBN to provide a unique identifier.
-        isbn: `AL-${media.id}`,
+        isbn: `${ANILIST_PREFIX}${media.id}`,
         title: media.title.english || media.title.romaji,
         coverUrl: media.coverImage.extraLarge,
         synopsis: media.description || "",
