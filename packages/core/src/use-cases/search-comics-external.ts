@@ -2,6 +2,7 @@ import { ComicMetadata, IMetadataProvider } from "../ports/metadata-provider";
 
 export interface SearchComicsExternalInput {
   query: string;
+  groupBySeries?: boolean;
 }
 
 export class SearchComicsExternalUseCase {
@@ -11,8 +12,39 @@ export class SearchComicsExternalUseCase {
     if (!input.query || input.query.trim().length === 0) {
       return [];
     }
+
+    // Increase limit to try and fetch more of the collection (Google max is usually 40 per request)
+    // For a real production app, we would need recursive pagination here.
     const results = await this.metadataProvider.search(input.query);
+
+    // Default to true if undefined
+    if (input.groupBySeries === false) {
+      return this.sortResults(results);
+    }
+
     return this.groupAndDeduplicate(results);
+  }
+
+  private sortResults(results: ComicMetadata[]): ComicMetadata[] {
+    return results.sort((a, b) => {
+      // Extract numbers from titles like "Naruto 1", "Naruto Vol. 1", "Naruto #1", "Naruto no 63/72"
+      const getNumber = (title: string) => {
+        const match =
+          title.match(/(?:vol\.?|no\.?|#|v)?\s*(\d+)(\s*\/\s*\d+)?$/i) ||
+          title.match(/(\d+)$/); // Fallback to just number at end
+        return match ? parseInt(match[1], 10) : 999999;
+      };
+
+      const numA = getNumber(a.title);
+      const numB = getNumber(b.title);
+
+      if (numA !== numB) {
+        return numA - numB;
+      }
+
+      // Fallback to title string comparison
+      return a.title.localeCompare(b.title);
+    });
   }
 
   private groupAndDeduplicate(results: ComicMetadata[]): ComicMetadata[] {

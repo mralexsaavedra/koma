@@ -10,4 +10,5 @@ export type ComicViewModel = Pick<
   | "status"
   | "coverUrl"
   | "synopsis"
+  | "acquiredAt"
 >;
