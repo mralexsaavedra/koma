@@ -20,6 +20,12 @@ export class PrismaComicRepository implements IComicRepository {
     return ComicMapper.toDomain(raw);
   }
 
+  async findById(id: string): Promise<Comic | null> {
+    const raw = await prisma.comic.findUnique({ where: { id } });
+    if (!raw) return null;
+    return ComicMapper.toDomain(raw);
+  }
+
   async listAll(): Promise<Comic[]> {
     const rawList = await prisma.comic.findMany();
     return rawList.map(ComicMapper.toDomain);

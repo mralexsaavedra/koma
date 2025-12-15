@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { addComicAction } from "@/actions/comic-actions";
 
 export const useAddComicMutation = (
-  onSuccess?: () => void,
+  onSuccess?: (data: { id: string }) => void,
   onError?: (error: Error) => void,
 ) => {
   return useMutation({

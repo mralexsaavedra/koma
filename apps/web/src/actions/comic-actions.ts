@@ -20,6 +20,8 @@ export async function addComicAction(formData: FormData) {
     throw new Error("ISBN is required");
   }
 
-  await addComicUseCase.execute({ isbn });
+  const comic = await addComicUseCase.execute({ isbn });
   revalidatePath("/");
+
+  return { id: comic.id };
 }

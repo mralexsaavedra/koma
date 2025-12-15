@@ -22,6 +22,15 @@ export const useComicSearch = () => {
     (error) => showToast(error.message || "Failed to add comic", "error"),
   );
 
+  const { mutate: addComicAndGo, isPending: isAddingAndGoing } =
+    useAddComicMutation(
+      (data) => {
+        showToast("Opening comic details...", "success");
+        router.push(`/library/${data.id}`);
+      },
+      (error) => showToast(error.message || "Failed to open comic", "error"),
+    );
+
   const handleSearch = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
@@ -40,6 +49,16 @@ export const useComicSearch = () => {
     [addComic],
   );
 
+  const handleView = useCallback(
+    (isbn: string) => {
+      // Treat "View" as "Add & Go"
+      const formData = new FormData();
+      formData.set("isbn", isbn);
+      addComicAndGo(formData); // Use the mutation that redirects
+    },
+    [addComicAndGo],
+  );
+
   const results = useMemo(() => queryResults, [queryResults]);
 
   return {
@@ -47,8 +66,9 @@ export const useComicSearch = () => {
     setQuery,
     results,
     isSearching,
-    isAdding,
+    isAdding: isAdding || isAddingAndGoing,
     handleSearch,
     handleAdd,
+    handleView,
   };
 };

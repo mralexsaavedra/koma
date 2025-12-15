@@ -1,7 +1,8 @@
 "use client";
 
-import { useComicSearch } from "@/presentation/hooks/controllers/use-comic-search";
 import { SearchInput } from "@/presentation/components/molecules/search-input";
+import { useComicSearch } from "@/presentation/hooks/controllers/use-comic-search";
+
 import { SearchResultsList } from "./search-results-list";
 
 export const SearchSection = () => {
@@ -13,6 +14,7 @@ export const SearchSection = () => {
     isAdding,
     handleSearch,
     handleAdd,
+    handleView,
   } = useComicSearch();
 
   return (
@@ -32,6 +34,7 @@ export const SearchSection = () => {
             results={results}
             isAdding={isAdding}
             onAdd={handleAdd}
+            onView={handleView}
           />
         </div>
       )}
