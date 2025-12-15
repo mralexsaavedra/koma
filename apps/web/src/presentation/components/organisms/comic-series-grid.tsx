@@ -6,8 +6,6 @@ interface ComicSeriesGridProps {
 }
 
 export const ComicSeriesGrid = ({ comics }: ComicSeriesGridProps) => {
-  if (comics.length === 0) return null;
-
   return (
     <div className="border-t border-gray-100 pt-8">
       <h3 className="mb-6 text-xl font-bold text-gray-900">

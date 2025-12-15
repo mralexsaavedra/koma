@@ -161,7 +161,9 @@ export const ComicDetailView = ({
             </div>
 
             {/* VOLUMES / ISSUES GRID */}
-            <ComicSeriesGrid comics={relatedComics} />
+            {relatedComics.length > 0 && (
+              <ComicSeriesGrid comics={relatedComics} />
+            )}
           </div>
         </div>
       </div>
