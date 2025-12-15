@@ -18,7 +18,7 @@ export const HomeView = ({ comics }: HomeViewProps) => {
           <div className="mb-12 space-y-8">
             <HomeHeader />
 
-            <section className="mx-auto max-w-2xl">
+            <section className="w-full transition-all duration-500 ease-in-out">
               <SearchSection />
             </section>
           </div>

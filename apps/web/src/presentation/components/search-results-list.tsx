@@ -1,4 +1,5 @@
 import { ComicMetadata } from "@koma/core";
+
 import { SearchResultItem } from "./search-result-item";
 
 interface SearchResultsListProps {
@@ -13,7 +14,7 @@ export const SearchResultsList = ({
   onAdd,
 }: SearchResultsListProps) => {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div className="3xl:grid-cols-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       {results.map((comic) => (
         <SearchResultItem
           key={comic.isbn}

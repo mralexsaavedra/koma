@@ -16,20 +16,24 @@ export const SearchSection = () => {
   } = useComicSearch();
 
   return (
-    <div className="mx-auto w-full max-w-2xl space-y-8">
-      <SearchInput
-        query={query}
-        setQuery={setQuery}
-        isSearching={isSearching}
-        onSearch={handleSearch}
-      />
+    <div className="w-full space-y-12">
+      <div className="mx-auto max-w-3xl px-4">
+        <SearchInput
+          query={query}
+          setQuery={setQuery}
+          isSearching={isSearching}
+          onSearch={handleSearch}
+        />
+      </div>
 
       {results.length > 0 && (
-        <SearchResultsList
-          results={results}
-          isAdding={isAdding}
-          onAdd={handleAdd}
-        />
+        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <SearchResultsList
+            results={results}
+            isAdding={isAdding}
+            onAdd={handleAdd}
+          />
+        </div>
       )}
 
       {results.length === 0 && query && !isSearching && (
