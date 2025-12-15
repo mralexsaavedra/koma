@@ -33,7 +33,7 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
         <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
           {/* Left Column: Cover & Actions */}
           <div className="flex flex-col gap-6">
-            <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-gray-100 shadow-xl ring-1 ring-gray-900/5 sm:max-w-75">
+            <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-gray-100 shadow-xl ring-1 ring-gray-900/5 sm:max-w-75">
               {comic.coverUrl ? (
                 <Image
                   src={comic.coverUrl}

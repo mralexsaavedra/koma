@@ -35,7 +35,7 @@ export const SeriesDetailView = ({
         <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
           {/* Series Cover */}
           <div className="shrink-0">
-            <div className="relative aspect-[2/3] w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md sm:w-48">
+            <div className="relative aspect-2/3 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md sm:w-48">
               {series.coverUrl ? (
                 <Image
                   src={series.coverUrl}
