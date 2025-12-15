@@ -5,7 +5,7 @@ import { ArrowLeftIcon } from "@/presentation/components/atoms/icons/arrow-left-
 import { CheckIcon } from "@/presentation/components/atoms/icons/check-icon";
 import { HeartIcon } from "@/presentation/components/atoms/icons/heart-icon";
 import { ShoppingCartIcon } from "@/presentation/components/atoms/icons/shopping-cart-icon";
-import { IssueCard } from "@/presentation/components/molecules/issue-card";
+import { ComicSeriesGrid } from "@/presentation/components/organisms/comic-series-grid";
 import { Navbar } from "@/presentation/components/organisms/navbar";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
@@ -161,18 +161,7 @@ export const ComicDetailView = ({
             </div>
 
             {/* VOLUMES / ISSUES GRID */}
-            {relatedComics.length > 0 && (
-              <div className="border-t border-gray-100 pt-8">
-                <h3 className="mb-6 text-xl font-bold text-gray-900">
-                  Comics ({relatedComics.length})
-                </h3>
-                <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
-                  {relatedComics.map((issue) => (
-                    <IssueCard key={issue.isbn} comic={issue} />
-                  ))}
-                </div>
-              </div>
-            )}
+            <ComicSeriesGrid comics={relatedComics} />
           </div>
         </div>
       </div>

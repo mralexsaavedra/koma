@@ -1,4 +1,5 @@
 export * from "./domain/comic";
+export * from "./domain/services/series-title-normalizer";
 export * from "./ports/comic-repository";
 export * from "./ports/metadata-provider";
 export * from "./use-cases/add-comic";
