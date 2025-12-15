@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { MouseEvent, useCallback, useState } from "react";
 
+import { APP_ROUTES } from "@/presentation/constants/routes";
 import { useAddComicMutation } from "@/presentation/hooks/mutations/use-add-comic-mutation";
 import { useToast } from "@/presentation/providers/toast-provider";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
@@ -38,8 +40,11 @@ export const IssueCard = ({ comic }: IssueCardProps) => {
 
   return (
     <div className="group relative flex flex-col items-center gap-2">
-      {/* Cover */}
-      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-lg bg-gray-100 shadow-sm transition-all group-hover:shadow-md">
+      {/* Cover wrapped in Link */}
+      <Link
+        href={APP_ROUTES.COMIC_DETAIL(comic.id || comic.isbn)}
+        className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-gray-100 shadow-sm transition-all group-hover:shadow-md"
+      >
         {comic.coverUrl ? (
           <Image
             src={comic.coverUrl}
@@ -60,7 +65,7 @@ export const IssueCard = ({ comic }: IssueCardProps) => {
           {/* Try to extract number from title usually in patterns like "Naruto 1" or "Vol 2" or "No. 3" */}
           #{comic.title.match(/(\d+)(\/\d+)?$/)?.[1] || "?"}
         </div>
-      </div>
+      </Link>
 
       {/* Add Button (Floating/Bottom) */}
       <button

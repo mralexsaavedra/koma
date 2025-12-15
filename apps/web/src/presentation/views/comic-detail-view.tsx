@@ -5,20 +5,15 @@ import { ArrowLeftIcon } from "@/presentation/components/atoms/icons/arrow-left-
 import { CheckIcon } from "@/presentation/components/atoms/icons/check-icon";
 import { HeartIcon } from "@/presentation/components/atoms/icons/heart-icon";
 import { ShoppingCartIcon } from "@/presentation/components/atoms/icons/shopping-cart-icon";
-import { ComicSeriesGrid } from "@/presentation/components/organisms/comic-series-grid";
 import { Navbar } from "@/presentation/components/organisms/navbar";
 import { APP_ROUTES } from "@/presentation/constants/routes";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface ComicDetailViewProps {
   comic: ComicViewModel;
-  relatedComics?: ComicViewModel[];
 }
 
-export const ComicDetailView = ({
-  comic,
-  relatedComics = [],
-}: ComicDetailViewProps) => {
+export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
@@ -160,11 +155,6 @@ export const ComicDetailView = ({
                 </div>
               </div>
             </div>
-
-            {/* VOLUMES / ISSUES GRID */}
-            {relatedComics.length > 0 && (
-              <ComicSeriesGrid comics={relatedComics} />
-            )}
           </div>
         </div>
       </div>
