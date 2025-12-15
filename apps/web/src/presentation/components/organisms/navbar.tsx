@@ -8,7 +8,8 @@ import { KomaLogo } from "@/presentation/components/atoms/koma-logo";
 import { cn } from "@/presentation/utils/cn";
 
 const NAV_ITEMS = [
-  { label: "Library", href: "/" },
+  { label: "Home", href: "/" },
+  { label: "Library", href: "/library" },
   { label: "Lists", href: "#" },
   { label: "Activity", href: "#" },
 ];
