@@ -2,6 +2,7 @@ import {
   AddComicUseCase,
   GetComicDetailsUseCase,
   GetLibraryUseCase,
+  GetSeriesDetailsUseCase,
   SearchComicsExternalUseCase,
 } from "@koma/core";
 import { PrismaComicRepository } from "@koma/database";
@@ -44,4 +45,9 @@ export const searchComicsExternalUseCase = new SearchComicsExternalUseCase(
 export const getComicDetailsUseCase = new GetComicDetailsUseCase(
   comicRepository,
   metadataService,
+);
+
+export const getSeriesDetailsUseCase = new GetSeriesDetailsUseCase(
+  getComicDetailsUseCase,
+  searchComicsExternalUseCase,
 );

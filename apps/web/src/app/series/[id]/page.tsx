@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { SeriesTitleNormalizer } from "@koma/core";
-
-import { getComicDetailsUseCase, searchComicsExternalUseCase } from "@/lib/di";
+import { getComicDetailsUseCase, getSeriesDetailsUseCase } from "@/lib/di";
 import { ComicMapper } from "@/presentation/mappers/comic-mapper";
 import { SeriesDetailView } from "@/presentation/views/series-detail-view";
 
@@ -26,28 +24,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${comic.title} (Series) - Koma`,
     description: `Series details for ${comic.title}`,
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
 export default async function SeriesDetailPage({ params }: Props) {
   const { id } = await params;
-  const comic = await getComicDetailsUseCase.execute({ idOrIsbn: id });
+  // Use the new Use Case that encapsulates getting the series and its volumes
+  const details = await getSeriesDetailsUseCase.execute(id);
 
-  if (!comic) {
+  if (!details) {
     notFound();
   }
 
-  // Use domain service to clean title
-  const seriesTitle = SeriesTitleNormalizer.normalize(comic.title);
-  const query = seriesTitle.length > 1 ? seriesTitle : comic.title;
+  const { series, volumes } = details;
 
-  const relatedMetas = await searchComicsExternalUseCase.execute({
-    query: query,
-    groupBySeries: false,
-  });
-
-  const comicViewModel = ComicMapper.toViewModel(comic);
-  const relatedComicsViewModel = ComicMapper.toViewModelList(relatedMetas);
+  const comicViewModel = ComicMapper.toViewModel(series);
+  const relatedComicsViewModel = ComicMapper.toViewModelList(volumes);
 
   return (
     <SeriesDetailView
