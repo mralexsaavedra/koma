@@ -10,9 +10,15 @@ interface ComicCardProps {
 }
 
 export const ComicCard = memo(function ComicCard({ comic }: ComicCardProps) {
+  const isSeries =
+    comic.isbn.startsWith("SERIES-") || comic.isbn.startsWith("AL-");
+  const href = isSeries
+    ? APP_ROUTES.SERIES_DETAIL(comic.id)
+    : APP_ROUTES.COMIC_DETAIL(comic.id);
+
   return (
     <Link
-      href={APP_ROUTES.COMIC_DETAIL(comic.id)}
+      href={href}
       className="group relative flex h-full flex-col gap-3 transition-all duration-300 hover:-translate-y-1"
     >
       <div className="group-hover:shadow-primary-500/20 relative aspect-2/3 w-full overflow-hidden rounded-2xl bg-gray-100 shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:shadow-2xl group-hover:ring-black/10">
