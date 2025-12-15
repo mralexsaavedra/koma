@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
 
+import { APP_ROUTES } from "@/presentation/constants/routes";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface ComicCardProps {
@@ -11,7 +12,7 @@ interface ComicCardProps {
 export const ComicCard = memo(function ComicCard({ comic }: ComicCardProps) {
   return (
     <Link
-      href={`/library/${comic.id}`}
+      href={APP_ROUTES.COMIC_DETAIL(comic.id)}
       className="group relative flex h-full flex-col gap-3 transition-all duration-300 hover:-translate-y-1"
     >
       <div className="group-hover:shadow-primary-500/20 relative aspect-2/3 w-full overflow-hidden rounded-2xl bg-gray-100 shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:shadow-2xl group-hover:ring-black/10">
