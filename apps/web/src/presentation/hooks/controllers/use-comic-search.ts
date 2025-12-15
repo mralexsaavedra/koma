@@ -23,7 +23,11 @@ export const useComicSearch = () => {
 
   const handleView = useCallback(
     (isbn: string) => {
-      router.push(APP_ROUTES.COMIC_DETAIL(isbn));
+      if (isbn.startsWith("AL-")) {
+        router.push(APP_ROUTES.SERIES_DETAIL(isbn));
+      } else {
+        router.push(APP_ROUTES.COMIC_DETAIL(isbn));
+      }
     },
     [router],
   );
