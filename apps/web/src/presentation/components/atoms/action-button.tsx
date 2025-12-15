@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
 import { cn } from "@/presentation/utils/cn";
 
-interface ActionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ActionButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "ghost";
   icon?: ReactNode;
   children: ReactNode;
