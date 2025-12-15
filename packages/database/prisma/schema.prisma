@@ -17,6 +17,7 @@ model Comic {
   
   status        String    @default("WANTED")
   coverUrl      String?
+  synopsis      String?
   acquiredAt    DateTime?
   
   createdAt     DateTime  @default(now())

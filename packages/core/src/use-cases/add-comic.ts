@@ -33,6 +33,7 @@ export class AddComicUseCase {
       metadata.authors,
       input.collectionStatus || CollectionStatus.WANTED,
       metadata.coverUrl,
+      metadata.synopsis,
       new Date(),
     );
 

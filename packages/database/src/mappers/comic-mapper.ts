@@ -12,6 +12,7 @@ export class ComicMapper {
       raw.authors ? JSON.parse(raw.authors) : [],
       raw.status as CollectionStatus,
       raw.coverUrl || undefined,
+      raw.synopsis || undefined,
       raw.acquiredAt || undefined,
     );
   }
@@ -25,6 +26,7 @@ export class ComicMapper {
       authors: JSON.stringify(comic.authors),
       status: comic.status,
       coverUrl: comic.coverUrl ?? null,
+      synopsis: comic.synopsis ?? null,
       acquiredAt: comic.acquiredAt ?? null,
       createdAt: new Date(),
       updatedAt: new Date(),

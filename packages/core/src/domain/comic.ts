@@ -15,6 +15,7 @@ export class Comic {
     public authors: string[],
     public status: CollectionStatus,
     public coverUrl?: string,
+    public synopsis?: string,
     public acquiredAt?: Date,
   ) {}
 
