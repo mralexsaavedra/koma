@@ -1,28 +1,18 @@
 import Image from "next/image";
-import { MouseEvent, memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 
 import { ComicMetadata } from "@koma/core";
 
 interface SearchResultItemProps {
   comic: ComicMetadata;
-  isAdding: boolean;
-  onAdd: (isbn: string) => void;
   onView: (isbn: string) => void;
 }
 
 export const SearchResultItem = memo(
-  ({ comic, isAdding, onAdd, onView }: SearchResultItemProps) => {
+  ({ comic, onView }: SearchResultItemProps) => {
     const handleClick = useCallback(() => {
       onView(comic.isbn);
     }, [comic.isbn, onView]);
-
-    const handleAdd = useCallback(
-      (e: MouseEvent) => {
-        e.stopPropagation();
-        onAdd(comic.isbn);
-      },
-      [comic.isbn, onAdd],
-    );
 
     return (
       <div
@@ -55,13 +45,10 @@ export const SearchResultItem = memo(
           <p className="mt-1 text-sm text-gray-400">
             {comic.authors.join(", ")}
           </p>
-          <button
-            onClick={handleAdd}
-            disabled={isAdding}
-            className="mt-4 self-start rounded-full bg-gray-900 px-5 py-2 text-xs font-bold text-white shadow-lg shadow-gray-900/10 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-gray-900/20 focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 disabled:opacity-50 disabled:hover:translate-y-0"
-          >
-            {isAdding ? "Adding..." : "Add to Collection"}
-          </button>
+          <div className="mt-4 flex items-center gap-1 text-xs font-bold text-gray-900 opacity-0 transition-opacity group-hover:opacity-100">
+            <span>View Details</span>
+            <span aria-hidden="true">&rarr;</span>
+          </div>
         </div>
       </div>
     );

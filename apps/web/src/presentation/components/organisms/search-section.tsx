@@ -6,16 +6,8 @@ import { useComicSearch } from "@/presentation/hooks/controllers/use-comic-searc
 import { SearchResultsList } from "./search-results-list";
 
 export const SearchSection = () => {
-  const {
-    query,
-    setQuery,
-    results,
-    isSearching,
-    isAdding,
-    handleSearch,
-    handleAdd,
-    handleView,
-  } = useComicSearch();
+  const { query, setQuery, results, isSearching, handleSearch, handleView } =
+    useComicSearch();
 
   return (
     <div className="w-full space-y-12">
@@ -30,12 +22,7 @@ export const SearchSection = () => {
 
       {results.length > 0 && (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <SearchResultsList
-            results={results}
-            isAdding={isAdding}
-            onAdd={handleAdd}
-            onView={handleView}
-          />
+          <SearchResultsList results={results} onView={handleView} />
         </div>
       )}
 
