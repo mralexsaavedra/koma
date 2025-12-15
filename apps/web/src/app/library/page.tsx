@@ -24,7 +24,6 @@ const LibraryPage = async () => {
     authors: series.representativeComic.authors,
     status: series.representativeComic.status,
     coverUrl: series.representativeComic.coverUrl,
-    // potentially pass totalVolumes to view model if needed
   }));
 
   return <LibraryView comics={comicViewModels} />;

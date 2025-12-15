@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent, useCallback, useState } from "react";
 
+import { CollectionStatus } from "@koma/core";
+
 import { SpinnerIcon } from "@/presentation/components/atoms/icons/spinner-icon";
 import { APP_ROUTES } from "@/presentation/constants/routes";
 import { useAddComicMutation } from "@/presentation/hooks/mutations/use-add-comic-mutation";
@@ -16,13 +18,14 @@ interface IssueCardProps {
 
 export const IssueCard = ({ comic }: IssueCardProps) => {
   const { showToast } = useToast();
-  const [isAdded, setIsAdded] = useState(comic.status !== "WANTED"); // Simple check
+  const [isAdded, setIsAdded] = useState(
+    comic.status !== CollectionStatus.WANTED,
+  );
 
   const { mutate: addComic, isPending } = useAddComicMutation(
     () => {
       setIsAdded(true);
       showToast("Comic added!", "success");
-      // Optionally router.refresh() but local state is faster for "Quick Add" feed
     },
     (error) => showToast(error.message || "Failed to add", "error"),
   );
@@ -41,7 +44,6 @@ export const IssueCard = ({ comic }: IssueCardProps) => {
 
   return (
     <div className="group relative flex flex-col items-center gap-2">
-      {/* Cover wrapped in Link */}
       <Link
         href={APP_ROUTES.COMIC_DETAIL(comic.id || comic.isbn)}
         className="relative aspect-2/3 w-full overflow-hidden rounded-lg bg-gray-100 shadow-sm transition-all group-hover:shadow-md"
@@ -61,9 +63,7 @@ export const IssueCard = ({ comic }: IssueCardProps) => {
           </div>
         )}
 
-        {/* Top-Right Number Badge (heuristic extraction) */}
         <div className="absolute top-0 right-0 rounded-bl-lg bg-gray-900/80 px-2 py-1 text-xs font-bold text-white backdrop-blur-xs">
-          {/* Try to extract number from title usually in patterns like "Naruto 1" or "Vol 2" or "No. 3" */}
           #{comic.title.match(/(\d+)(\/\d+)?$/)?.[1] || "?"}
         </div>
       </Link>

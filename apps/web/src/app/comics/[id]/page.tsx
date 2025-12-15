@@ -36,7 +36,6 @@ export default async function ComicDetailPage({ params }: Props) {
   }
 
   const comicViewModel = ComicMapper.toViewModel(comic);
-  // No longer fetching relatedMetas for single comic view.
 
   return <ComicDetailView comic={comicViewModel} />;
 }

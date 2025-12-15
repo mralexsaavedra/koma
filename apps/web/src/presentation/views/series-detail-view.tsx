@@ -4,7 +4,7 @@ import { Navbar } from "@/presentation/components/organisms/navbar";
 import { ComicViewModel } from "@/presentation/view-models/comic-view-model";
 
 interface SeriesDetailViewProps {
-  series: ComicViewModel; // The "main" representative comic (usually Vol 1 or AniList data)
+  series: ComicViewModel;
   volumes: ComicViewModel[];
 }
 
@@ -17,9 +17,7 @@ export const SeriesDetailView = ({
       <Navbar />
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 xl:px-12 2xl:max-w-480">
-        {/* Series Header */}
         <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-12">
-          {/* Series Cover */}
           <div className="shrink-0">
             <div className="relative aspect-2/3 w-32 overflow-hidden rounded-lg bg-gray-100 shadow-md sm:w-48">
               <ImageWithFallback
@@ -33,7 +31,6 @@ export const SeriesDetailView = ({
             </div>
           </div>
 
-          {/* Series Info */}
           <div className="flex-1 space-y-4">
             <div>
               <h1 className="font-comic text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -67,14 +64,10 @@ export const SeriesDetailView = ({
           </div>
         </div>
 
-        {/* Volumes Grid */}
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-gray-100 pb-4">
             <h2 className="text-2xl font-bold text-gray-900">Collection</h2>
-            <div className="text-sm text-gray-500">
-              {/* Potential Sort/Filter controls here */}
-              {volumes.length} Items
-            </div>
+            <div className="text-sm text-gray-500">{volumes.length} Items</div>
           </div>
           <ComicSeriesGrid comics={volumes} />
         </div>

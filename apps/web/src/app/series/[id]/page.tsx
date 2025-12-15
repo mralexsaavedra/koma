@@ -33,7 +33,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SeriesDetailPage({ params }: Props) {
   const { id } = await params;
-  // Use the new Use Case that encapsulates getting the series and its volumes
   const details = await getSeriesDetailsUseCase.execute(id);
 
   if (!details) {

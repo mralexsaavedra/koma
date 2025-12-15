@@ -4,7 +4,7 @@ import { IComicRepository } from "../ports/comic-repository";
 
 export interface LibrarySeries {
   seriesTitle: string;
-  representativeComic: Comic; // The comic to show (cover, metadata)
+  representativeComic: Comic;
   totalVolumes: number;
   comics: Comic[];
 }
@@ -17,7 +17,6 @@ export class GetLibraryUseCase {
 
     const seriesMap = new Map<string, Comic[]>();
 
-    // 1. Group by normalized series title
     for (const comic of allComics) {
       const normalizedTitle = SeriesTitleNormalizer.normalize(comic.title);
       if (!seriesMap.has(normalizedTitle)) {
@@ -26,13 +25,10 @@ export class GetLibraryUseCase {
       seriesMap.get(normalizedTitle)!.push(comic);
     }
 
-    // 2. Transform into LibrarySeries objects
     const library: LibrarySeries[] = [];
 
     for (const [title, comics] of seriesMap.entries()) {
-      // Sort comics by title to pick the earliest volume as representative
       comics.sort((a, b) => {
-        // Simple heuristic: title comparison handles "Vol 1" < "Vol 2" well enough
         return a.title.localeCompare(b.title, undefined, {
           numeric: true,
           sensitivity: "base",
@@ -49,7 +45,6 @@ export class GetLibraryUseCase {
       });
     }
 
-    // 3. Sort library by series title A-Z
     return library.sort((a, b) => a.seriesTitle.localeCompare(b.seriesTitle));
   }
 }

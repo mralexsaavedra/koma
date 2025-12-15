@@ -16,7 +16,6 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8 xl:px-12 2xl:max-w-480">
         <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
-          {/* Left Column: Cover & Actions */}
           <div className="flex flex-col gap-6">
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-xl bg-gray-100 shadow-xl ring-1 ring-gray-900/5 sm:max-w-75">
               <ImageWithFallback
@@ -29,7 +28,6 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
               />
             </div>
 
-            {/* Mobile Title */}
             <div className="block md:hidden">
               <h1 className="font-comic text-3xl font-bold text-gray-900">
                 {comic.title}
@@ -42,7 +40,6 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
             <ComicActionButtons />
           </div>
 
-          {/* Right Column: Details */}
           <div className="space-y-8">
             <div className="hidden md:block">
               <h1 className="font-comic text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
@@ -57,10 +54,8 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
               )}
             </div>
 
-            {/* Metadata Bar */}
             <ComicMetadataBar comic={comic} />
 
-            {/* Synopsis */}
             <div className="prose prose-lg prose-gray max-w-none">
               <h3 className="text-xl font-bold text-gray-900">Synopsis</h3>
               {comic.synopsis ? (
@@ -75,7 +70,6 @@ export const ComicDetailView = ({ comic }: ComicDetailViewProps) => {
               )}
             </div>
 
-            {/* Footer Details */}
             <ComicInfoGrid comic={comic} />
           </div>
         </div>
